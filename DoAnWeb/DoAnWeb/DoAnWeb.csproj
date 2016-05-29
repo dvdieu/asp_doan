@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +84,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -117,15 +127,185 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap-theme.css" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap.css" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap.min.css" />
+    <Content Include="Assets\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\bootstrap-3.3.6\js\bootstrap.js" />
+    <Content Include="Assets\bootstrap-3.3.6\js\bootstrap.min.js" />
+    <Content Include="Assets\bootstrap-3.3.6\js\npm.js" />
+    <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.css" />
+    <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.min.css" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\image\10\main_thumn.jpg" />
+    <Content Include="Assets\image\11\main_thumn.jpg" />
+    <Content Include="Assets\image\12\main_thumn.jpg" />
+    <Content Include="Assets\image\13\main_thumn.jpg" />
+    <Content Include="Assets\image\14\main_thumn.jpg" />
+    <Content Include="Assets\image\15\main_thumn.jpg" />
+    <Content Include="Assets\image\16\main_thumn.jpg" />
+    <Content Include="Assets\image\17\main_thumn.jpg" />
+    <Content Include="Assets\image\18\main_thumn.jpg" />
+    <Content Include="Assets\image\19\main_thumn.jpg" />
+    <Content Include="Assets\image\1\main_thumn.jpg" />
+    <Content Include="Assets\image\20\main_thumn.jpg" />
+    <Content Include="Assets\image\21\main_thumn.jpg" />
+    <Content Include="Assets\image\22\main_thumn.jpg" />
+    <Content Include="Assets\image\23\main_thumn.jpg" />
+    <Content Include="Assets\image\24\main_thumn.jpg" />
+    <Content Include="Assets\image\25\main_thumn.jpg" />
+    <Content Include="Assets\image\26\main_thumn.jpg" />
+    <Content Include="Assets\image\27\main_thumn.jpg" />
+    <Content Include="Assets\image\28\main_thumn.jpg" />
+    <Content Include="Assets\image\29\main_thumn.jpg" />
+    <Content Include="Assets\image\2\main_thumn.jpg" />
+    <Content Include="Assets\image\30\main_thumn.jpg" />
+    <Content Include="Assets\image\31\main_thumn.jpg" />
+    <Content Include="Assets\image\32\main_thumn.jpg" />
+    <Content Include="Assets\image\33\main_thumn.jpg" />
+    <Content Include="Assets\image\34\main_thumn.jpg" />
+    <Content Include="Assets\image\35\main_thumn.jpg" />
+    <Content Include="Assets\image\36\main_thumn.jpg" />
+    <Content Include="Assets\image\37\main_thumn.jpg" />
+    <Content Include="Assets\image\38\main_thumn.jpg" />
+    <Content Include="Assets\image\39\main_thumn.jpg" />
+    <Content Include="Assets\image\3\main_thumn.jpg" />
+    <Content Include="Assets\image\40\main_thumn.jpg" />
+    <Content Include="Assets\image\41\main_thumn.jpg" />
+    <Content Include="Assets\image\42\main_thumn.jpg" />
+    <Content Include="Assets\image\43\main_thumn.jpg" />
+    <Content Include="Assets\image\44\main_thumn.jpg" />
+    <Content Include="Assets\image\45\main_thumn.jpg" />
+    <Content Include="Assets\image\46\main_thumn.jpg" />
+    <Content Include="Assets\image\47\main_thumn.jpg" />
+    <Content Include="Assets\image\48\main_thumn.jpg" />
+    <Content Include="Assets\image\49\main_thumn.jpg" />
+    <Content Include="Assets\image\4\main_thumn.jpg" />
+    <Content Include="Assets\image\50\main_thumn.jpg" />
+    <Content Include="Assets\image\51\main_thumn.jpg" />
+    <Content Include="Assets\image\52\main_thumn.jpg" />
+    <Content Include="Assets\image\5\main_thumn.jpg" />
+    <Content Include="Assets\image\6\main_thumn.jpg" />
+    <Content Include="Assets\image\7\main_thumn.jpg" />
+    <Content Include="Assets\image\8\main_thumn.jpg" />
+    <Content Include="Assets\image\9\main_thumn.jpg" />
+    <Content Include="Assets\jquery-2.2.4.min.js" />
+    <Content Include="Assets\jQueryValidate\additional-methods.min.js" />
+    <Content Include="Assets\jQueryValidate\jquery.validate.min.js" />
+    <Content Include="Assets\scripts\modernizr-2.6.2.js" />
+    <Content Include="Assets\Theme\css\animate.css" />
+    <Content Include="Assets\Theme\css\main.css" />
+    <Content Include="Assets\Theme\css\prettyPhoto.css" />
+    <Content Include="Assets\Theme\css\price-range.css" />
+    <Content Include="Assets\Theme\css\responsive.css" />
+    <Content Include="Assets\Theme\images\home\bg_border.png" />
+    <Content Include="Assets\Theme\images\home\gallery1.jpg" />
+    <Content Include="Assets\Theme\images\home\gallery2.jpg" />
+    <Content Include="Assets\Theme\images\home\gallery3.jpg" />
+    <Content Include="Assets\Theme\images\home\gallery4.jpg" />
+    <Content Include="Assets\Theme\images\home\girl1.jpg" />
+    <Content Include="Assets\Theme\images\home\girl2.jpg" />
+    <Content Include="Assets\Theme\images\home\girl3.jpg" />
+    <Content Include="Assets\Theme\images\home\iframe1.png" />
+    <Content Include="Assets\Theme\images\home\iframe2.png" />
+    <Content Include="Assets\Theme\images\home\iframe3.png" />
+    <Content Include="Assets\Theme\images\home\iframe4.png" />
+    <Content Include="Assets\Theme\images\home\logo.png" />
+    <Content Include="Assets\Theme\images\home\map.png" />
+    <Content Include="Assets\Theme\images\home\new.png" />
+    <Content Include="Assets\Theme\images\home\partner1.png" />
+    <Content Include="Assets\Theme\images\home\partner2.png" />
+    <Content Include="Assets\Theme\images\home\partner3.png" />
+    <Content Include="Assets\Theme\images\home\partner4.png" />
+    <Content Include="Assets\Theme\images\home\pricing.png" />
+    <Content Include="Assets\Theme\images\home\product1.jpg" />
+    <Content Include="Assets\Theme\images\home\product2.jpg" />
+    <Content Include="Assets\Theme\images\home\product3.jpg" />
+    <Content Include="Assets\Theme\images\home\product4.jpg" />
+    <Content Include="Assets\Theme\images\home\product5.jpg" />
+    <Content Include="Assets\Theme\images\home\product6.jpg" />
+    <Content Include="Assets\Theme\images\home\recommend1.jpg" />
+    <Content Include="Assets\Theme\images\home\recommend2.jpg" />
+    <Content Include="Assets\Theme\images\home\recommend3.jpg" />
+    <Content Include="Assets\Theme\images\home\sale.png" />
+    <Content Include="Assets\Theme\images\home\searchicon.png" />
+    <Content Include="Assets\Theme\images\home\shipping.jpg" />
+    <Content Include="Assets\Theme\js\contact.js" />
+    <Content Include="Assets\Theme\js\gmaps.js" />
+    <Content Include="Assets\Theme\js\html5shiv.js" />
+    <Content Include="Assets\Theme\js\jquery.prettyPhoto.js" />
+    <Content Include="Assets\Theme\js\jquery.scrollUp.min.js" />
+    <Content Include="Assets\Theme\js\main.js" />
+    <Content Include="Assets\Theme\js\price-range.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap-theme.css.map" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap-theme.min.css.map" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap.css.map" />
+    <Content Include="Assets\bootstrap-3.3.6\css\bootstrap.min.css.map" />
+    <Content Include="Assets\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="Models\QuanLyRuou.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+      <LastGenOutput>QuanLyRuou.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuanLyRuou.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+      <LastGenOutput>QuanLyRuou.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Helper\Poco_Product_Page.cs" />
+    <Compile Include="Models\QuanLyRuou.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyRuou.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyRuou.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyRuou.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ChiTietOrders.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_LoaiSanPhams.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_NguoiSuDungs.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_NhaSanXuats.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_PhieuOrders.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_SanPhams.cs">
+      <DependentUpon>QuanLyRuou.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,6 +315,22 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Views\Category\DanhMucPartial.cshtml" />
+    <EntityDeploy Include="Models\QuanLyRuou.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyRuou.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyRuou.edmx.diagram">
+      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Products\ByCartegory.cshtml" />
+    <Content Include="Views\Products\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,8 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
