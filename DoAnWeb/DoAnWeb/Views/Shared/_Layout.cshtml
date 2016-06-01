@@ -11,6 +11,7 @@
     <link href="~/Assets/Theme/css/prettyPhoto.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/price-range.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/responsive.css" rel="stylesheet" />
+    <link href="~/Assets/LeftMenu/menustyle.css" rel="stylesheet" />
     @RenderSection("section_css", false)
 </head>
 <body>
@@ -202,26 +203,19 @@
             </div>
         </div>
     </section><!--/slider-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Danh Mục Sản Phẩm</div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
                     @{Html.RenderAction("DanhMucPartial", "Category"); }
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        @RenderSection("view_title", true)
-                    </div>
-                    <div class="panel-body">
-                        @RenderBody()
-                    </div>
+                <div class="col-sm-9 padding-right">
+                    <h2 class="title text-center">@RenderSection("view_title", false)</h2>
+                    @RenderBody()
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <footer id="footer">
         <!--Footer-->
         <div class="footer-top">
@@ -380,10 +374,13 @@
         </div>
 
     </footer><!--/Footer-->
+
     <script src="~/Assets/jquery-2.2.4.min.js"></script>
     <script src="~/Assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="~/Assets/Theme/js/jquery.scrollUp.min.js"></script>
     <script src="~/Assets/Theme/js/price-range.js"></script>
     <script src="~/Assets/Theme/js/main.js"></script>
+    <script src="~/Assets/scripts/script.js"></script>
+    @RenderSection("js", false)
 </body>
 </html>

@@ -1,23 +1,86 @@
-﻿@section view_title
-{
-   Chi tiết sản phẩm
-
-    }
-@using DoAnWeb.Models
+﻿@using DoAnWeb.Models
 @model tbl_SanPhams
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="~/Assets/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;"/>
+@section view_title
+{
+    Chi tiết sản phẩm
+}
+@section section_css
+{
+    <link href="~/Assets/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .name {
+            color: teal;
+            font-weight: bold;
+            font-size: 120% !important;
+        }
+
+        .gia {
+            color: #fc4577;
+        }
+    </style>
+}
+
+        <div class="product-details">
+            <div class="col-md-4">
+                <img src="~/Assets/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
+            </div>
+            <div class="col-md-8">
+                <span class="name">
+                    @Model.TenSanPham
+                </span>
+                <br />
+                <span>
+                    <span class="gia">@string.Format("{0:N0}", Model.Gia) VND</span>
+                </span>
+                <br />
+                <span>
+                    Hơn @Model.SoLanMua lượt mua
+                </span>
+                <br />
+                <span>
+                    @Model.MoTaDai
+                </span>
+                <br />
+                <span>
+                    Dung tích @Model.DungTich ml
+                </span>
+                <br />
+                <span>
+                    Nồng độ @Model.NongDo
+                </span>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <input id="txtQ" type="text" value="" name="txtQ">
+                    </div>
+                    <div class="col-md-9">
+                        <button id="btnCartPlus" class="btn btn-primary">
+                            <i class="fa fa-cart-plus"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <span>
-                @Model.TenSanPham
-            </span>
-            <br />
-            <span>
-                @Model.Gia
-            </span>
+        <div class="recommended_items">
+            <!--recommended_items-->
+            <h2 class="title text-center">Sản phẩm cùng loại</h2>
         </div>
-    </div>
-</div>
+@section js
+{
+    <script src="~/Assets/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script>
+        $("input[name='txtQ']").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'glyphicon glyphicon-plus',
+            verticaldownclass: 'glyphicon glyphicon-minus',
+            min: 1,
+            max: 100,
+            initval: 1
+        });
+        $("#btnCartPlus").click(function () {
+            alert(txtQ.value);
+            btnCartPlus.submit();
+        });
+    </script>
+}

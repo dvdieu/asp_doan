@@ -11,6 +11,7 @@ namespace DoAnWeb.Models.Helper
         int soPage;
         int curPage;
         int maSanPham;
+        string tenLoaiSanPham;
         public List<tbl_SanPhams> DanhSachSanPham
         {
             get
@@ -60,6 +61,19 @@ namespace DoAnWeb.Models.Helper
             set
             {
                 maSanPham = value;
+            }
+        }
+
+        public string TenLoaiSanPham
+        {
+            get
+            {
+                return tenLoaiSanPham;
+            }
+
+            set
+            {
+                tenLoaiSanPham = value;
             }
         }
     }

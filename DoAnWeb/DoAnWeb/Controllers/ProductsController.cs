@@ -30,6 +30,7 @@ namespace DoAnWeb.Controllers
                 item.SoPage = PhanTrang(list, soPhanTu);
                 item.CurPage = page;
                 item.MaSanPham = id.Value;
+                item.TenLoaiSanPham = ctx.tbl_LoaiSanPhams.First(p => p.LoaiSanPhamID == id.Value).TenLoaiSanPham;
                 return View(item);
             }
         }

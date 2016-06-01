@@ -135,6 +135,17 @@
     <Content Include="Assets\bootstrap-3.3.6\js\bootstrap.js" />
     <Content Include="Assets\bootstrap-3.3.6\js\bootstrap.min.js" />
     <Content Include="Assets\bootstrap-3.3.6\js\npm.js" />
+    <Content Include="Assets\bootstrap-touchspin-master\.gitignore" />
+    <Content Include="Assets\bootstrap-touchspin-master\demo\demo.css" />
+    <Content Include="Assets\bootstrap-touchspin-master\demo\favicon.ico" />
+    <Content Include="Assets\bootstrap-touchspin-master\demo\index.html" />
+    <Content Include="Assets\bootstrap-touchspin-master\dist\jquery.bootstrap-touchspin.css" />
+    <Content Include="Assets\bootstrap-touchspin-master\dist\jquery.bootstrap-touchspin.js" />
+    <Content Include="Assets\bootstrap-touchspin-master\dist\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Assets\bootstrap-touchspin-master\dist\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Assets\bootstrap-touchspin-master\Gruntfile.js" />
+    <Content Include="Assets\bootstrap-touchspin-master\src\jquery.bootstrap-touchspin.css" />
+    <Content Include="Assets\bootstrap-touchspin-master\src\jquery.bootstrap-touchspin.js" />
     <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.css" />
     <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.min.css" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
@@ -193,7 +204,10 @@
     <Content Include="Assets\jquery-2.2.4.min.js" />
     <Content Include="Assets\jQueryValidate\additional-methods.min.js" />
     <Content Include="Assets\jQueryValidate\jquery.validate.min.js" />
+    <Content Include="Assets\LeftMenu\italian-wine-bottle.svg" />
+    <Content Include="Assets\LeftMenu\menustyle.css" />
     <Content Include="Assets\scripts\modernizr-2.6.2.js" />
+    <Content Include="Assets\scripts\script.js" />
     <Content Include="Assets\Theme\css\animate.css" />
     <Content Include="Assets\Theme\css\main.css" />
     <Content Include="Assets\Theme\css\prettyPhoto.css" />
@@ -331,6 +345,15 @@
     </Content>
     <Content Include="Views\Products\ByCartegory.cshtml" />
     <Content Include="Views\Products\Detail.cshtml" />
+    <Content Include="Assets\bootstrap-touchspin-master\.editorconfig" />
+    <Content Include="Assets\bootstrap-touchspin-master\.jshintrc" />
+    <Content Include="Assets\bootstrap-touchspin-master\.travis.yml" />
+    <Content Include="Assets\bootstrap-touchspin-master\bootstrap-touchspin.jquery.json" />
+    <Content Include="Assets\bootstrap-touchspin-master\bower.json" />
+    <Content Include="Assets\bootstrap-touchspin-master\CONTRIBUTING.md" />
+    <Content Include="Assets\bootstrap-touchspin-master\LICENSE.md" />
+    <Content Include="Assets\bootstrap-touchspin-master\package.json" />
+    <Content Include="Assets\bootstrap-touchspin-master\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
