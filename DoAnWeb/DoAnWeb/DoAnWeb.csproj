@@ -354,6 +354,8 @@
     <Content Include="Assets\bootstrap-touchspin-master\LICENSE.md" />
     <Content Include="Assets\bootstrap-touchspin-master\package.json" />
     <Content Include="Assets\bootstrap-touchspin-master\README.md" />
+    <Content Include="Views\Products\PartialViewCungLoai.cshtml" />
+    <Content Include="Views\Shared\_LayoutDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

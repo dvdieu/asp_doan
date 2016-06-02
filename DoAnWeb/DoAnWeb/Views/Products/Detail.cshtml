@@ -1,4 +1,5 @@
-﻿@using DoAnWeb.Models
+﻿@{Layout = "~/Views/Shared/_LayoutDetail.cshtml";}
+@using DoAnWeb.Models
 @model tbl_SanPhams
 @section view_title
 {
@@ -19,7 +20,6 @@
         }
     </style>
 }
-
         <div class="product-details">
             <div class="col-md-4">
                 <img src="~/Assets/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
@@ -65,6 +65,18 @@
         <div class="recommended_items">
             <!--recommended_items-->
             <h2 class="title text-center">Sản phẩm cùng loại</h2>
+            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @{Html.RenderAction("PartialViewCungLoai", "Products", new { id = Model.LoaiSanPhamID,spID=Model.SanPhamID });}
+                </div>
+                <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+
         </div>
 @section js
 {

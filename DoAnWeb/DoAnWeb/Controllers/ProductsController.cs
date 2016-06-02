@@ -47,5 +47,16 @@ namespace DoAnWeb.Controllers
                 return View(ctx.tbl_SanPhams.Where(p => p.SanPhamID == id).FirstOrDefault());
             }
         }
+        public ActionResult PartialViewCungLoai(int? id,int? spID)
+        {
+            if(!id.HasValue)
+            {
+                return null;
+            }
+            using (ModelEntities ctx = new ModelEntities())
+            {
+                return PartialView(ctx.tbl_SanPhams.Where(p => p.LoaiSanPhamID == id.Value).Take(12).ToList());
+            }
+        }
     }
 }
