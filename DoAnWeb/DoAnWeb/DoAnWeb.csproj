@@ -213,6 +213,18 @@
     <Content Include="Assets\Theme\css\prettyPhoto.css" />
     <Content Include="Assets\Theme\css\price-range.css" />
     <Content Include="Assets\Theme\css\responsive.css" />
+    <Content Include="Assets\Theme\images\404\404.png" />
+    <Content Include="Assets\Theme\images\blog\blog-one.jpg" />
+    <Content Include="Assets\Theme\images\blog\blog-three.jpg" />
+    <Content Include="Assets\Theme\images\blog\blog-two.jpg" />
+    <Content Include="Assets\Theme\images\blog\man-four.jpg" />
+    <Content Include="Assets\Theme\images\blog\man-one.jpg" />
+    <Content Include="Assets\Theme\images\blog\man-three.jpg" />
+    <Content Include="Assets\Theme\images\blog\man-two.jpg" />
+    <Content Include="Assets\Theme\images\blog\socials.png" />
+    <Content Include="Assets\Theme\images\cart\one.png" />
+    <Content Include="Assets\Theme\images\cart\three.png" />
+    <Content Include="Assets\Theme\images\cart\two.png" />
     <Content Include="Assets\Theme\images\home\bg_border.png" />
     <Content Include="Assets\Theme\images\home\gallery1.jpg" />
     <Content Include="Assets\Theme\images\home\gallery2.jpg" />
@@ -245,6 +257,20 @@
     <Content Include="Assets\Theme\images\home\sale.png" />
     <Content Include="Assets\Theme\images\home\searchicon.png" />
     <Content Include="Assets\Theme\images\home\shipping.jpg" />
+    <Content Include="Assets\Theme\images\product-details\1.jpg" />
+    <Content Include="Assets\Theme\images\product-details\new.jpg" />
+    <Content Include="Assets\Theme\images\product-details\rating.png" />
+    <Content Include="Assets\Theme\images\product-details\share.png" />
+    <Content Include="Assets\Theme\images\product-details\similar1.jpg" />
+    <Content Include="Assets\Theme\images\product-details\similar2.jpg" />
+    <Content Include="Assets\Theme\images\product-details\similar3.jpg" />
+    <Content Include="Assets\Theme\images\shop\advertisement.jpg" />
+    <Content Include="Assets\Theme\images\shop\product10.jpg" />
+    <Content Include="Assets\Theme\images\shop\product11.jpg" />
+    <Content Include="Assets\Theme\images\shop\product12.jpg" />
+    <Content Include="Assets\Theme\images\shop\product7.jpg" />
+    <Content Include="Assets\Theme\images\shop\product8.jpg" />
+    <Content Include="Assets\Theme\images\shop\product9.jpg" />
     <Content Include="Assets\Theme\js\contact.js" />
     <Content Include="Assets\Theme\js\gmaps.js" />
     <Content Include="Assets\Theme\js\html5shiv.js" />
@@ -281,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -356,6 +383,8 @@
     <Content Include="Assets\bootstrap-touchspin-master\README.md" />
     <Content Include="Views\Products\PartialViewCungLoai.cshtml" />
     <Content Include="Views\Shared\_LayoutDetail.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutSub.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

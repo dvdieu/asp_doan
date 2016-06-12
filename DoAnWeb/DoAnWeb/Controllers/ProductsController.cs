@@ -55,7 +55,7 @@ namespace DoAnWeb.Controllers
             }
             using (ModelEntities ctx = new ModelEntities())
             {
-                return PartialView(ctx.tbl_SanPhams.Where(p => p.LoaiSanPhamID == id.Value).Take(12).ToList());
+                return PartialView(ctx.tbl_SanPhams.Where(p => p.LoaiSanPhamID == id.Value && p.SanPhamID != spID).ToList());
             }
         }
     }
