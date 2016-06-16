@@ -1,28 +1,89 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_LayoutSub.cshtml";
 }
-<section id="form">
-    <!--form-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <div class="login-form">
-                    <!--login form-->
-                    <h2>Login to your account</h2>
-                    <form action="#">
-                        <input type="text" placeholder="Nhập tài khoản của bạn" />
-                        <input type="password" placeholder="Mật khẩu" />
-                        <span>
-                            <input type="checkbox" class="checkbox">
-                            Keep me signed in
-                        </span>
-                        <button type="submit" class="btn btn-default">Login</button>
+<style type="text/css">
+    body
+    {
+        background-color:#F0F0E9;
+    }
+    .dangNhap {
+        background-color:#00897B;
+        padding-top:20px;
+        margin:0;
+    }
+    .mauTrang
+    {
+        color:#fff;
+    }
+    .shop-menu >ul >li >a
+    {
+        background-color:initial !important;
+    }   
+    .header-middle .container .row
+    {
+        border-bottom:none !important;
+    }
+    .divGiua{
+        position:absolute;
+    vertical-align:middle;
+    }
+    html,body,.container {
+ height: 100%;
+}
+.container {
+ display: table;
+}
+.row
+{
+ height: 100%;
+ display: table-row;
+}
+.vertical-center
+{
+ display: table-cell;
+ float: none;
+ vertical-align: middle;
+}
+</style>
+<div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 vertical-center">
+            <div class="login-panel panel panel-default dangNhap">
+                <div class="panel-body">
+                    @if (ViewBag.Error != null)
+                    {
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Lỗi!</strong>Tài khoản, đã tồn tại trong hệ thống
+                    </div>
+                    }
+                    <form class="form-horizontal" method="post">
+                        <div class="form-group">
+                            <span class="col-sm-2 control-label fa fa-user mauTrang fa-2x"></span>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail3" name="UserName" placeholder="Tên đăng nhập">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label fa fa-lock fa-2x mauTrang"></label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="" name="Password" placeholder="Mật khẩu">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+                        </div>
                     </form>
-                </div><!--/login form-->
+                </div>
             </div>
-
-        </div>
-    </div>
-</section><!--/form-->
+        </div><!-- /.col-->
+</div><!-- /.row -->	
 

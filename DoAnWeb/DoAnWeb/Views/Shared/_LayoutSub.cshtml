@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login | E-Shopper</title>
     <link href="~/Assets/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/animate.css" rel="stylesheet" />
@@ -22,6 +21,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    @RenderSection("css",false)
 </head><!--/head-->
 <body>
     <header id="header">
@@ -59,9 +59,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+                            <a href="@Url.Action("Index","Home")"><img src="images/home/logo.png" alt="" /></a>
                         </div>
-
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
@@ -69,7 +68,7 @@
                                 <li><a href=""><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="login.html" class="active"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="@Url.Action("Login","Account")">Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -78,14 +77,17 @@
         </div><!--/header-middle-->
 
     </header><!--/header-->
-
-    @RenderBody()
-
-    <script src="js/jquery.js"></script>
-    <script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+    <div class="container">
+        @RenderBody()
+    </div>
+    
+    <script src="~/Assets/jquery-2.2.4.min.js"></script>
+    <script src="~/Assets/Theme/js/contact.js"></script>
+    <script src="~/Assets/Theme/js/gmaps.js"></script>
+    <script src="~/Assets/Theme/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Assets/Theme/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Assets/Theme/js/main.js"></script>
+    <script src="~/Assets/Theme/js/price-range.js"></script>
+    @RenderSection("js", false)
 </body>
 </html>

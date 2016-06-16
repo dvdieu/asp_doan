@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect, Version=4.0.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.0.1\lib\net45\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.0.1\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -146,6 +154,8 @@
     <Content Include="Assets\bootstrap-touchspin-master\Gruntfile.js" />
     <Content Include="Assets\bootstrap-touchspin-master\src\jquery.bootstrap-touchspin.css" />
     <Content Include="Assets\bootstrap-touchspin-master\src\jquery.bootstrap-touchspin.js" />
+    <Content Include="Assets\datepicker\css\datepicker.css" />
+    <Content Include="Assets\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.css" />
     <Content Include="Assets\font-awesome-4.6.3\css\font-awesome.min.css" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
@@ -307,6 +317,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassHelper\CurrentContext.cs" />
+    <Compile Include="ClassHelper\StringUtils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -314,6 +326,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />
     <Compile Include="Models\QuanLyRuou.Context.cs">
       <AutoGen>True</AutoGen>
@@ -355,6 +369,7 @@
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -385,6 +400,8 @@
     <Content Include="Views\Shared\_LayoutDetail.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutSub.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Assets\datepicker\less\datepicker.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
