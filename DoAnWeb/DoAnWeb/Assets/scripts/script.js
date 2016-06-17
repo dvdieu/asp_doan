@@ -103,3 +103,7 @@ jQuery(document).ready(function($) {
     return this;
   };
 })(jQuery, window, document);
+/*Logout Form*/
+$('#logOutLink').on('click', function () {
+    $('#frmLogout').submit();
+});

@@ -323,6 +323,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Filter\CheckLoginAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -402,6 +403,8 @@
     <Content Include="Views\Shared\_LayoutSub.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Assets\datepicker\less\datepicker.less" />
+    <Content Include="Views\Shared\_LayoutProfiles.cshtml" />
+    <Content Include="Views\Account\Profiles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

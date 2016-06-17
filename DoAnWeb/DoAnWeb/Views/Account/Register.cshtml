@@ -7,8 +7,6 @@
     <link href="~/Assets/datepicker/css/datepicker.css" rel="stylesheet" />
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
       rel="stylesheet" type="text/css" />
-}
-@model int
 <style type="text/css">
     body {
         background-color: #F0F0E9;
@@ -35,7 +33,14 @@
         position: absolute;
         vertical-align: middle;
     }
+    .Yellow
+    {
+        color:#FDD835;
+    }
 </style>
+}
+@model int
+
 <div class="row">
     @if (Model >=1)
     {
@@ -61,19 +66,19 @@
                     <div class="form-group">
                         <span for="inputEmail3" class="col-sm-1 control-label fa fa-user mauTrang fa-2x"></span>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" id="" name="TenDangNhap" placeholder="Tên đăng nhập">
+                            <input type="text" class="form-control" id="TenDangNhap" name="TenDangNhap" placeholder="Tên đăng nhập">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-1 control-label fa fa-lock fa-2x mauTrang"></label>
                         <div class="col-sm-11">
-                            <input type="password" class="form-control" id="" name="MatKhau" placeholder="Mật khẩu">
+                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="Mật khẩu">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label fa fa-cc-discover fa-2x mauTrang"></label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="" name="HoTen"  placeholder="Họ tên">
+                            <input type="text" class="form-control" id="HoTen" name="HoTen"  placeholder="Họ tên">
                         </div>
                         <label class="col-sm-1 control-label fa fa-venus-mars fa-2x mauTrang"></label>
                         <label class="radio-inline mauTrang col-sm-1">
@@ -86,7 +91,7 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-1 control-label fa fa-calendar fa-2x mauTrang"></label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control datepicker" id="" name="NgaySinh" placeholder="Ngày Sinh">
+                            <input type="text" class="form-control datepicker" id="NgaySinh" name="NgaySinh" placeholder="Ngày Sinh">
                         </div>
                     </div>
                     <div class="form-group">
@@ -98,7 +103,7 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-1 control-label fa fa-phone fa-2x mauTrang"></label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" id="" name="SoDienThoai" placeholder="Số điện thoại">
+                            <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" placeholder="Số điện thoại">
                         </div>
                     </div>
                     <div class="form-group">
@@ -145,8 +150,63 @@
         });
     </script>
     <script type="text/javascript">
+        $.validator.addMethod("vndate", function (value, element) {
+            return this.optional(element) || /^\d\d?\/\d\d?\/\d\d?\/\d\d\d\d$/.test(value);
+        });
+    </script>
+    <script type="text/javascript">
         $('#formDangKy').validate({
-            
-        })
+            rules :{
+                TenDangNhap: {
+                    required:true,
+                },
+                MatKhau:{
+                    required: true,
+                    minlength: 6,
+                },
+                HoTen: {
+                    required:true,
+                },
+                NgaySinh: {
+                    required: true,
+                    vndate: true,
+                },
+                SoDienThoai: {
+                    required:true,
+                },
+                CaptchaCode: {
+                    required: true,
+                }
+            },
+            messages: {
+                TenDangNhap:{
+                    required:"Chưa nhập tên đăng nhập"
+                },
+                MatKhau: {
+                    required: "Chưa nhập mật khẩu",
+                    minlenght: "Mật khẩu phải dài hơn 6 ký tự",
+                },
+                HoTen: {
+                    required: "Chưa nhập họ tên",
+                },
+                NgaySinh: {
+                    required: "Chưa nhập ngày sinh",
+                    vndate:"Định dạng dd/mm/yyyy",
+                },
+                SoDienThoai: {
+                    required: "Chưa nhập số điện thoại"
+                },
+                CaptchaCode: {
+                    required: "Chưa nhập mã kiểm tra",
+                },
+            },
+            errorElement: 'span',
+            errorClass: 'Yellow',
+
+            //highlight: function(element)
+            //{
+            //    $(element).closest('.form-group').addClass('Yellow');
+            //},
+        });
     </script>
 }

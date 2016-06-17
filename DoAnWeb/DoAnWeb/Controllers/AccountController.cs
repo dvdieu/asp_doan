@@ -7,7 +7,7 @@ using DoAnWeb.Models;
 using DoAnWeb.Models.Helper;
 using DoAnWeb.ClassHelper;
 using BotDetect.Web.Mvc;
-
+using DoAnWeb.Filter;
 
 namespace DoAnWeb.Controllers
 {
@@ -16,6 +16,10 @@ namespace DoAnWeb.Controllers
         // GET: Account/Login
         public ActionResult Login()
         {
+            if(CurrentContext.isLogin()==true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         // POST: Account/Login
@@ -42,6 +46,11 @@ namespace DoAnWeb.Controllers
                     {
                         Session["IsLogin"] = 1;
                         Session["CurUser"] = usr;
+                        if(item.Remeber)
+                        {
+                            HttpContext.Response.Cookies["Username"].Value = usr.TenDangNhap;
+                            HttpContext.Response.Cookies["Username"].Expires = DateTime.Now.AddDays(7);
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -52,12 +61,17 @@ namespace DoAnWeb.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
+            CurrentContext.detroySesstion();
             return RedirectToAction("Index", "Home");
         }
 
         // GET: Account/Register
         public ActionResult Register()
         {
+            if(CurrentContext.isLogin()==true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(1);
         }
         // POST: Account/Register
@@ -92,6 +106,13 @@ namespace DoAnWeb.Controllers
                 ctx.SaveChanges();
             }
             return View(0);
+        }
+
+        // GET: Account/Profiles
+        [CheckLogin]
+        public ActionResult Profiles()
+        {
+            return View();
         }
     }
 }
