@@ -22,6 +22,7 @@ namespace DoAnWeb.Filter
                 return;
             }
             base.OnActionExecuting(filterContext);
+            
         }
     }
 }
