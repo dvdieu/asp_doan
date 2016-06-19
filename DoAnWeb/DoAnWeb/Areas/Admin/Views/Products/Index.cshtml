@@ -1,0 +1,118 @@
+﻿@using DoAnWeb.Models
+@model List<tbl_SanPhams>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+}
+@section title
+{
+    Quản lý sản phẩm
+}
+<div class="table-responsive">
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="text-center">Hình ảnh</th>
+                <th class="text-center">Tên sản phẩm</th>
+                <th class="text-center">Số lượng</th>
+                <th class="text-center">Giá</th>
+                <th class="text-center">Dung tích</th>
+                <th class="text-center">Nồng độ</th>
+                <th class="text-center">Trưng bày</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="text-right">
+            @foreach (tbl_SanPhams item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/image/@item.SanPhamID/main_thumn.jpg" style="width:58px;height:58px;" class="text-center" />
+                    </td>
+                    <td class="text-center">@item.TenSanPham</td>
+                    @*<td>@item.tbl_LoaiSanPhams.TenLoaiSanPham</td>
+                        <td>@item.tbl_NhaSanXuats.TenNhaSanXuat</td>*@
+                    <td>@item.SoLuong</td>
+                    <td>@item.Gia</td>
+                    <td>@item.DungTich ml</td>
+                    <td>@item.NongDo &#870;</td>
+                    <td class="text-center">
+                        @if (item.TinhTrang == true)
+                        {
+                            <i class="fa fa-star fa-2x" style="color:teal;"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-star-o fa-2x"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <a href="@Url.Action("Edit",new { id = item.SanPhamID })" class="btn btn-primary" role="button">
+                                    <i class="fa fa-edit"></i>
+                                    Sửa
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-warning btnDelete" data-SanPhamID="@item.SanPhamID">
+                                    <i class="fa fa-trash-o"></i>
+                                    Xoá
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form class="form-horizontal" method="post" action="@Url.Action("Delete", "Products")" id="frmDelete">
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-2">
+                <input type="hidden" value="" name="id" id="txtDelete"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section js
+{
+    <script src="~/Areas/Admin/Assets/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $('#myTable').DataTable();
+        function submitformDelete(item)
+        {
+            var id = ($(item).data('sanphamid'));
+            $('#txtDelete').val(id);
+            $('#frmDelete').submit();
+        }
+        $('.btnDelete').click(function () {
+            var item = this;
+            swal({
+                title: 'Bạn đang thực hiện thao tác nguy hiểm',
+                text: "Bạn thực sự muốn xóa sản phẩm này",
+                type: 'warning',
+                cancelButtonText: 'Hủy bỏ',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xác nhận'
+            }).then(function () {
+                swal(
+                  'Đã xóa!',
+                  'Sản phẩm này đã bị xóa.',
+                  'success'
+                ), submitformDelete(item);
+            })
+        });
+       
+    </script>
+}

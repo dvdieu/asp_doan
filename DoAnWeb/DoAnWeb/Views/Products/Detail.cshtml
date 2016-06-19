@@ -22,7 +22,7 @@
 }
         <div class="product-details">
             <div class="col-md-4">
-                <img src="~/Assets/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
+                <img src="~/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
             </div>
             <div class="col-md-8">
                 <span class="name">
@@ -38,7 +38,7 @@
                 </span>
                 <br />
                 <span>
-                    @Model.MoTaDai
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.MoTaDai))
                 </span>
                 <br />
                 <span>
