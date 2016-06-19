@@ -23,7 +23,7 @@ namespace DoAnWeb.Controllers
             using (ModelEntities ctx = new ModelEntities())
             {
                 int soPhanTu = 4;
-                List<tbl_SanPhams> list = ctx.tbl_SanPhams.Where(p=>p.LoaiSanPhamID==id).ToList();
+                List<tbl_SanPhams> list = ctx.tbl_SanPhams.Where(p=>p.LoaiSanPhamID==id &&p.DaXoa==false && p.TinhTrang==true).ToList();
                 Poco_Product_Page item = new Poco_Product_Page();
                 int soTrang = PhanTrang(list, soPhanTu);
                 item.DanhSachSanPham = list.Skip((page - 1) * soPhanTu).Take(soPhanTu).ToList();
