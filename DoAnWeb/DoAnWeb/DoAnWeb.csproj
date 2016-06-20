@@ -336,6 +336,7 @@
     <Content Include="Assets\scripts\modernizr-2.6.2.js" />
     <Content Include="Assets\scripts\script.js" />
     <Content Include="Assets\Theme\css\animate.css" />
+    <Content Include="Assets\Theme\css\main.css" />
     <Content Include="Assets\Theme\css\prettyPhoto.css" />
     <Content Include="Assets\Theme\css\price-range.css" />
     <Content Include="Assets\Theme\css\responsive.css" />
