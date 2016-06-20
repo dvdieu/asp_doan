@@ -451,9 +451,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entites.Context.cs" />
     <Compile Include="Models\Helper\Cart.cs" />
     <Compile Include="Models\Helper\CartModel.cs" />
     <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Index_Page.cs" />
     <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />
     <Compile Include="Models\QuanLyRuou.Context.cs">
@@ -471,10 +473,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entites.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Helper\Poco_DangKy.cs" />
-    <Compile Include="Models\Helper\Poco_Index_Page.cs" />
-    <Compile Include="Models\Helper\Poco_Login.cs" />
-    <Compile Include="Models\Helper\Poco_Product_Page.cs" />
     <Compile Include="Models\tbl_ChiTietOrders.cs">
       <DependentUpon>Entites.tt</DependentUpon>
     </Compile>
@@ -505,13 +503,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Category\DanhMucPartial.cshtml" />
-    <EntityDeploy Include="Models\QuanLyRuou.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLyRuou.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QuanLyRuou.edmx.diagram">
-      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Products\ByCartegory.cshtml" />
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Assets\bootstrap-touchspin-master\.editorconfig" />
