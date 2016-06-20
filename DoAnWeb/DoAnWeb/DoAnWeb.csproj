@@ -320,6 +320,7 @@
     <Compile Include="ClassHelper\CurrentContext.cs" />
     <Compile Include="ClassHelper\StringUtils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -327,6 +328,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Helper\Cart.cs" />
+    <Compile Include="Models\Helper\CartModel.cs" />
     <Compile Include="Models\Helper\Poco_DangKy.cs" />
     <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />
@@ -401,6 +404,7 @@
     <Content Include="Assets\datepicker\less\datepicker.less" />
     <Content Include="Views\Shared\_LayoutProfiles.cshtml" />
     <Content Include="Views\Account\Profiles.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

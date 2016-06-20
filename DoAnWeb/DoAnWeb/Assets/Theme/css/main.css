@@ -1630,7 +1630,7 @@ h2.title {
   margin: 15px -70px 10px 25px;
 }
 
-.cart_quantity_button a {
+.cart_quantity_button {
   background:#F0F0E9;
   color: #696763;
   display: inline-block;
@@ -1649,7 +1649,6 @@ h2.title {
   font-size: 16px;
   text-align: center;
   font-family: 'Roboto',sans-serif;
-  
 }
 
 
@@ -1662,13 +1661,31 @@ h2.title {
 
 .cart_delete a {
   background:#F0F0E9;
-  color: #FFFFFF;
+  color: #333;
   padding: 5px 7px;
   font-size: 16px
 }
 
 .cart_delete a:hover {
-  background:#FE980F
+  background:#CE3C2D
+}
+
+.cart_update  {
+  display: block;
+  margin-right: -12px;
+  overflow: hidden;
+}
+
+
+.cart_update a {
+  background:#F0F0E9;
+  color: #FFFFFF;
+  padding: 5px 7px;
+  font-size: 16px
+}
+
+.cart_update a:hover {
+  background:#b6ff00
 }
 
 

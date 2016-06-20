@@ -1,5 +1,7 @@
 ﻿@using DoAnWeb.Models
+@using DoAnWeb.ClassHelper
 @model List<tbl_SanPhams>
+
 @{int totalItem = Model.Count;}
 @{int i = 1; }
 @Html.Raw("<div class='item active'>")
@@ -12,7 +14,30 @@
                     <img src="~/Assets/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
                     <h2>@string.Format("{0:N0}", @item.Gia)</h2>
                     <p>@item.TenSanPham</p>
-                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                    <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
+                        <div class="row" style="text-align:center">
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
+                                   class="btn btn-primary"
+                                   role="button">
+                                    <i class="fa fa-list"></i>Chi tiết
+                                </a>
+                            </div>
+                            @if (CurrentContext.isLogin())
+                            {
+                                <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                <input  type="hidden" class="form-control"  placeholder="Slg" value="1" name="Quantity">
+
+                                <div class="col-md-9">
+                                    <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                        <i class="fa fa-cart-plus"></i>
+                                        Thêm vào giỏ
+                                    </button>
+
+                                </div>
+                            }
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

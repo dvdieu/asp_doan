@@ -18,6 +18,8 @@ namespace DoAnWeb
         {
             Session["IsLogin"] = 0;
             Session["CurUser"] = null;
+
+           
         }
     }
 }

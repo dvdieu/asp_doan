@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSub.cshtml";
+}
+
+@using DoAnWeb.Models.Helper
+@model List<CartItemModel>
+
+
+@section js{
+    
+<script src="~/Assets/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+<script type="text/javascript">
+        $('.removeItem').on('click', function () {
+            var proId= $(this).data('proid');
+            $('#txtRemoveId').val(proId);
+            $('#frmRemoveItem').submit();
+        });
+
+        $("input[name='Quantity']").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'glyphicon glyphicon-plus',
+            verticaldownclass: 'glyphicon glyphicon-minus',
+            min: 1,
+            max: 100,
+            initval: 1
+        });
+
+        $("#btnCartPlus").click(function () {
+            //alert(txtQ.value);
+            btnCartPlus.submit();
+        });
+
+</script>
+
+}
+
+<h2>Giỏ hàng</h2>
+
+@if (Model.Count == 0) {
+    <text>Không có dữ liệu</text>
+}
+else
+{
+    <form method="post" id="frmRemoveItem" action="@Url.Action("RemoveItem","Cart")">
+        <input id="txtRemoveId" type="hidden" name="proId"/>
+
+    </form>
+    <section id="cart_items">
+       
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Shopping Cart</li>
+                </ol>
+            </div>
+            <div class="table cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Sản phẩm</td>
+                            <td class="description">Mô tả</td>
+                            <td class="price">Giá</td>
+                            <td class="quantity">Số lượng</td>
+                            <td class="total">Thành tiền</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach(var cim in Model) { 
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="~/Assets/image/@cim.Product.SanPhamID/main_thumn.jpg" height="55" alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="@Url.Action("Detail", "Products", new {id = cim.Product.SanPhamID})">@cim.Product.TenSanPham</a></h4>
+                            
+                                </td>
+                                <td class="cart_price">
+                                    <p>@string.Format("{0:N0}", cim.Product.Gia) đ</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <input class="quantity" id="txtQ_@cim.Item.ProID" type="text" placeholder="Slg" value="@cim.Item.Quantity" name="Quantity">
+                                </td>
+
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@string.Format("{0:N0}", cim.Product.Gia*cim.Item.Quantity) đ</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="btn cart_quantity_delete removeItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button"><i class="fa fa-times"></i></a>
+                                </td>
+                                <td class="cart_update">
+                                    <a class="btn cart_quantity_update updateItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button"><img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/256/refresh.png" height="13"/></a>
+                                </td>
+</tr>    
+                        }                   
+                    </tbody>
+                </table>
+
+            </div>
+   
+        <h3 style="text-align:right; color:orangered"> Tổng Tiền: @string.Format("{0:N0}", @ViewBag.Total) đ</h3>
+    </section> <!--/#cart_items-->
+    
+}
+

@@ -1,9 +1,12 @@
 ﻿@using DoAnWeb.Models.Helper
 @using DoAnWeb.Models
+@using DoAnWeb.ClassHelper
+
 @model Poco_Product_Page
 @section view_title{
     @Model.TenLoaiSanPham
 }
+
 @section section_css
 {
     <style type="text/css">
@@ -31,8 +34,26 @@
         }
     </style>
 }
+
+@section js{
+ <script type="text/javascript">
+     $('.add-to-cart').on('click', function () {
+         var proId = $(this).data('proid');
+         $('#txtProID').val(proId);
+         $('#frmAddToCart').submit();
+     });
+
+    </script>
+}
+
 @if (Model.DanhSachSanPham.Count > 0)
 {
+    <form id="frmAddToCart" method="post" action="@Url.Action("AddInByCatView","Cart")">
+        <input type="hidden" name="ProID" id="txtProID" />
+        <input type="hidden" name="Quantity" value="1" />
+        <input type="hidden" name="catId" value="@ViewBag.CatID" />
+        <input type="hidden" name="curpage" value="@ViewBag.CurPage" />
+    </form>
     foreach (tbl_SanPhams item in Model.DanhSachSanPham)
     {
         <div class="col-sm-6 col-md-6">
@@ -59,12 +80,33 @@
                     <span style="display:inline-block; height:50px; overflow:hidden">@item.MoTaNgan</span>
                     <br />
                     <br />
-                    <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
-                       class="btn btn-primary"
-                       role="button">
-                        <i class="fa fa-list"></i>Chi tiết
-                    </a>
-                    <a href="#" class="btn btn-success" role="button"><i class="fa fa-cart-plus"></i>Thêm vào giỏ</a>
+                   
+                 
+                    <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
+                                   class="btn btn-primary"
+                                   role="button">
+                                    <i class="fa fa-list"></i>Chi tiết
+                                </a>
+                            </div>
+                               @if(CurrentContext.isLogin()) { 
+                                        <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                        <input id="Quantity" type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                    <div class="col-md-9">
+                                        <a href="javascript:;" class="btn btn-success add-to-cart" data-proid="@item.SanPhamID" role="button">
+                                            <i class="fa fa-cart-plus"></i>
+                                            Thêm vào giỏ
+                                        </a>
+                                
+                                    </div>
+                               }
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>

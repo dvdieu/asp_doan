@@ -1,5 +1,6 @@
 ﻿@{Layout = "~/Views/Shared/_LayoutDetail.cshtml";}
 @using DoAnWeb.Models
+@using DoAnWeb.ClassHelper
 @model tbl_SanPhams
 @section view_title
 {
@@ -49,17 +50,26 @@
                     Nồng độ @Model.NongDo
                 </span>
                 <br />
-                <div class="row">
-                    <div class="col-md-3">
-                        <input id="txtQ" type="text" value="" name="txtQ">
+                <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
+                    <div class="row">
+                        @if (CurrentContext.isLogin())
+                        {
+                        <div class="col-md-3">
+                            <input type="hidden" value="@Model.SanPhamID" name="ProID">
+                            <input id="Quantity" type="text" class="form-control" placeholder="Slg" value="1" name="Quantity">
+                        </div>
+                        
+                        
+                            <div class="col-md-9">
+                                <button id="btnCartPlus" class="btn btn-success">
+                                    <i class="fa fa-cart-plus"></i>
+                                    Thêm vào giỏ
+                                </button>
+
+                            </div>
+                        }
                     </div>
-                    <div class="col-md-9">
-                        <button id="btnCartPlus" class="btn btn-primary">
-                            <i class="fa fa-cart-plus"></i>
-                            Thêm vào giỏ
-                        </button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="recommended_items">
@@ -82,7 +92,7 @@
 {
     <script src="~/Assets/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
     <script>
-        $("input[name='txtQ']").TouchSpin({
+        $("input[id='Quantity']").TouchSpin({
             verticalbuttons: true,
             verticalupclass: 'glyphicon glyphicon-plus',
             verticaldownclass: 'glyphicon glyphicon-minus',
@@ -90,8 +100,9 @@
             max: 100,
             initval: 1
         });
+       
         $("#btnCartPlus").click(function () {
-            alert(txtQ.value);
+            //alert(txtQ.value);
             btnCartPlus.submit();
         });
     </script>

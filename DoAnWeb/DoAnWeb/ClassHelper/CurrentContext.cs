@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DoAnWeb.Models;
+using DoAnWeb.Models.Helper;
+
 namespace DoAnWeb.ClassHelper
 {
     public class CurrentContext
@@ -36,8 +38,20 @@ namespace DoAnWeb.ClassHelper
         {
             return (tbl_NguoiSuDungs)HttpContext.Current.Session["CurUser"];
         }
+
+        public static Cart Cart()
+        {
+
+            if (HttpContext.Current.Session["Cart"] == null)
+                HttpContext.Current.Session["Cart"] = new Cart();
+
+            return (Cart)HttpContext.Current.Session["Cart"];
+        }
+
         public static void detroySesstion()
         {
+
+            CurrentContext.Cart().Items.Clear();
             HttpContext.Current.Session["IsLogin"] = 0;
             HttpContext.Current.Session["CurUser"] = null;
             HttpContext.Current.Response.Cookies["Username"].Value = null;

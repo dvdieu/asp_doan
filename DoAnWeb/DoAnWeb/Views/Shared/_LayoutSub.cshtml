@@ -75,7 +75,7 @@
                                 {
                                     <li><a href="#"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
                                     <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                    <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
                                     <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
                                 }
                             </ul>
@@ -86,8 +86,11 @@
         </div><!--/header-middle-->
 
     </header><!--/header-->
-    <div class="container">
+    <div class="container-fluid">
+        
+        @RenderSection("titlePage",false)
         @RenderBody()
+
     </div>
     
     <script src="~/Assets/jquery-2.2.4.min.js"></script>

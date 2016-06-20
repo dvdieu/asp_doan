@@ -22,6 +22,8 @@ namespace DoAnWeb.Controllers
             }
             using (ModelEntities ctx = new ModelEntities())
             {
+                ViewBag.CatID = id;
+
                 int soPhanTu = 4;
                 List<tbl_SanPhams> list = ctx.tbl_SanPhams.Where(p=>p.LoaiSanPhamID==id).ToList();
                 Poco_Product_Page item = new Poco_Product_Page();
@@ -30,6 +32,11 @@ namespace DoAnWeb.Controllers
                 item.SoPage = PhanTrang(list, soPhanTu);
                 item.CurPage = page;
                 item.MaSanPham = id.Value;
+                ViewBag.Pages = item.SoPage;
+                ViewBag.CurPage = page;
+                ViewBag.NextPage = page + 1;
+                ViewBag.NextPage = page - 1;
+
                 item.TenLoaiSanPham = ctx.tbl_LoaiSanPhams.First(p => p.LoaiSanPhamID == id.Value).TenLoaiSanPham;
                 return View(item);
             }
