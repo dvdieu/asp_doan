@@ -446,12 +446,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanLyRuou.Context.cs" />
-    <Compile Include="Models\QuanLyRuou.cs" />
-    <Compile Include="Models\QuanLyRuou.Designer.cs">
-      <DependentUpon>QuanLyRuou.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_SanPhams.cs" />
+    <Compile Include="Models\Helper\Cart.cs" />
+    <Compile Include="Models\Helper\CartModel.cs" />
+    <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Index_Page.cs" />
+    <Compile Include="Models\Helper\Poco_Login.cs" />
+    <Compile Include="Models\Helper\Poco_Product_Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
