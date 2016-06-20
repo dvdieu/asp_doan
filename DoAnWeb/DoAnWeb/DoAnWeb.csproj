@@ -441,6 +441,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Helper\Cart.cs" />
+    <Compile Include="Models\Helper\CartModel.cs" />
+    <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Index_Page.cs" />
+    <Compile Include="Models\Helper\Poco_Login.cs" />
+    <Compile Include="Models\Helper\Poco_Product_Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
