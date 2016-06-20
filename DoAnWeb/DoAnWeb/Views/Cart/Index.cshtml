@@ -19,6 +19,14 @@
             $('#frmRemoveItem').submit();
         });
 
+        $('.updateItem').on('click', function () {
+            var proId = $(this).data('proid');
+            var quantity = $ * ('#txtQ_' + proId).val();
+
+            console.log(proId);
+            console.log(quantity);
+        })
+
         $("input[name='Quantity']").TouchSpin({
             verticalbuttons: true,
             verticalupclass: 'glyphicon glyphicon-plus',
