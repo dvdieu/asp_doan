@@ -14,7 +14,6 @@ namespace DoAnWeb.Controllers
         {
             using (ModelEntities context = new ModelEntities())
             {
-
                return PartialView(context.tbl_LoaiSanPhams.ToList());
             }
         }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_ChiTietOrders">
           <Key>
             <PropertyRef Name="ChiTietPhieuID" />
@@ -75,6 +75,7 @@
           <Property Name="DaXoa" Type="bit" />
           <Property Name="MoTaNgan" Type="nvarchar(max)" />
           <Property Name="MoTaDai" Type="nvarchar(max)" />
+          <Property Name="NgayNhap" Type="datetime" />
         </EntityType>
         <Association Name="FK__tbl_ChiTi__Phieu__1DE57479">
           <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="1" />
@@ -136,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WebModelsStoreContainer">
+        <EntityContainer Name="WEBModelStoreContainer">
           <EntitySet Name="tbl_ChiTietOrders" EntityType="Self.tbl_ChiTietOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoaiSanPhams" EntityType="Self.tbl_LoaiSanPhams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_NguoiSuDungs" EntityType="Self.tbl_NguoiSuDungs" Schema="dbo" store:Type="Tables" />
@@ -168,7 +169,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WebModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tbl_ChiTietOrders">
           <Key>
             <PropertyRef Name="ChiTietPhieuID" />
@@ -246,6 +247,7 @@
           <Property Name="DaXoa" Type="Boolean" />
           <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MoTaDai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayNhap" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbl_ChiTietOrders" Relationship="Self.FK__tbl_ChiTi__SanPh__1ED998B2" FromRole="tbl_SanPhams" ToRole="tbl_ChiTietOrders" />
           <NavigationProperty Name="tbl_LoaiSanPhams" Relationship="Self.FK__tbl_SanPh__LoaiS__1B0907CE" FromRole="tbl_SanPhams" ToRole="tbl_LoaiSanPhams" />
           <NavigationProperty Name="tbl_NhaSanXuats" Relationship="Self.FK__tbl_SanPh__NhaSa__1BFD2C07" FromRole="tbl_SanPhams" ToRole="tbl_NhaSanXuats" />
@@ -343,9 +345,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebModelsStoreContainer" CdmEntityContainer="ModelEntities">
+        <EntityContainerMapping StorageEntityContainer="WEBModelStoreContainer" CdmEntityContainer="ModelEntities">
           <EntitySetMapping Name="tbl_ChiTietOrders">
-            <EntityTypeMapping TypeName="WebModels.tbl_ChiTietOrders">
+            <EntityTypeMapping TypeName="WEBModel.tbl_ChiTietOrders">
               <MappingFragment StoreEntitySet="tbl_ChiTietOrders">
                 <ScalarProperty Name="ChiTietPhieuID" ColumnName="ChiTietPhieuID" />
                 <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />
@@ -357,7 +359,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_LoaiSanPhams">
-            <EntityTypeMapping TypeName="WebModels.tbl_LoaiSanPhams">
+            <EntityTypeMapping TypeName="WEBModel.tbl_LoaiSanPhams">
               <MappingFragment StoreEntitySet="tbl_LoaiSanPhams">
                 <ScalarProperty Name="LoaiSanPhamID" ColumnName="LoaiSanPhamID" />
                 <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
@@ -366,7 +368,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_NguoiSuDungs">
-            <EntityTypeMapping TypeName="WebModels.tbl_NguoiSuDungs">
+            <EntityTypeMapping TypeName="WEBModel.tbl_NguoiSuDungs">
               <MappingFragment StoreEntitySet="tbl_NguoiSuDungs">
                 <ScalarProperty Name="NguoiSuDungID" ColumnName="NguoiSuDungID" />
                 <ScalarProperty Name="TenNguoiSuDung" ColumnName="TenNguoiSuDung" />
@@ -382,7 +384,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_NhaSanXuats">
-            <EntityTypeMapping TypeName="WebModels.tbl_NhaSanXuats">
+            <EntityTypeMapping TypeName="WEBModel.tbl_NhaSanXuats">
               <MappingFragment StoreEntitySet="tbl_NhaSanXuats">
                 <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
                 <ScalarProperty Name="TenNhaSanXuat" ColumnName="TenNhaSanXuat" />
@@ -391,7 +393,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_PhieuOrders">
-            <EntityTypeMapping TypeName="WebModels.tbl_PhieuOrders">
+            <EntityTypeMapping TypeName="WEBModel.tbl_PhieuOrders">
               <MappingFragment StoreEntitySet="tbl_PhieuOrders">
                 <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />
                 <ScalarProperty Name="NgayLapPhieu" ColumnName="NgayLapPhieu" />
@@ -402,7 +404,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_SanPhams">
-            <EntityTypeMapping TypeName="WebModels.tbl_SanPhams">
+            <EntityTypeMapping TypeName="WEBModel.tbl_SanPhams">
               <MappingFragment StoreEntitySet="tbl_SanPhams">
                 <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
                 <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
@@ -418,6 +420,7 @@
                 <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
                 <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
                 <ScalarProperty Name="MoTaDai" ColumnName="MoTaDai" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
