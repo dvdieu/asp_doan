@@ -419,6 +419,12 @@
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="Models\QuanLyRuou.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+    <Content Include="Models\QuanLyRuou.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -440,6 +446,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuanLyRuou.Context.cs" />
+    <Compile Include="Models\QuanLyRuou.cs" />
+    <Compile Include="Models\QuanLyRuou.Designer.cs">
+      <DependentUpon>QuanLyRuou.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_SanPhams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +504,12 @@
     <Content Include="Areas\Admin\Assets\datatables\media\images\Sorting icons.psd" />
     <Content Include="Areas\Admin\Assets\datatables\Readme.md" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <EntityDeploy Include="Models\QuanLyRuou.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyRuou.edmx.diagram">
+      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
