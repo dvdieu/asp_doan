@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_ChiTietOrders">
           <Key>
             <PropertyRef Name="ChiTietPhieuID" />
@@ -56,6 +56,8 @@
           <Property Name="NguoiSuDungID" Type="int" Nullable="false" />
           <Property Name="TongSoLuong" Type="int" Nullable="false" />
           <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TinhTrangThanhToan" Type="bit" />
+          <Property Name="TinhTrangGiaoHang" Type="bit" />
         </EntityType>
         <EntityType Name="tbl_SanPhams">
           <Key>
@@ -165,8 +167,7 @@
             <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -228,6 +229,8 @@
           <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="tbl_ChiTietOrders" Relationship="Self.FK__tbl_ChiTi__Phieu__1DE57479" FromRole="tbl_PhieuOrders" ToRole="tbl_ChiTietOrders" />
           <NavigationProperty Name="tbl_NguoiSuDungs" Relationship="Self.FK__tbl_Phieu__Nguoi__1CF15040" FromRole="tbl_PhieuOrders" ToRole="tbl_NguoiSuDungs" />
+          <Property Name="TinhTrangThanhToan" Type="Boolean" />
+          <Property Name="TinhTrangGiaoHang" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbl_SanPhams">
           <Key>
@@ -395,6 +398,8 @@
           <EntitySetMapping Name="tbl_PhieuOrders">
             <EntityTypeMapping TypeName="WEBModel.tbl_PhieuOrders">
               <MappingFragment StoreEntitySet="tbl_PhieuOrders">
+                <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
+                <ScalarProperty Name="TinhTrangThanhToan" ColumnName="TinhTrangThanhToan" />
                 <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />
                 <ScalarProperty Name="NgayLapPhieu" ColumnName="NgayLapPhieu" />
                 <ScalarProperty Name="NguoiSuDungID" ColumnName="NguoiSuDungID" />

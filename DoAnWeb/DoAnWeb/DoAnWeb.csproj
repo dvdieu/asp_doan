@@ -435,8 +435,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CartController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_DonHang_IndexPage.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Page_SuaSanPham.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Page_ThemSanPham.cs" />
     <Compile Include="ClassHelper\CurrentContext.cs" />
@@ -549,6 +551,7 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Cart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

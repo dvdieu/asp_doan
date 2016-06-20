@@ -4,102 +4,81 @@
 @using DoAnWeb.Models.Helper
 @model Poco_Login
 <style type="text/css">
-    body
-    {
-        background-color:#F0F0E9;
+    body {
+        background-color: #F0F0E9;
     }
+
     .dangNhap {
-        background-color:#00897B;
-        padding-top:20px;
-        margin:0;
+        background-color: #00897B;
+        padding-top: 20px;
+        margin: 0;
     }
-    .mauTrang
-    {
-        color:#fff;
+
+    .mauTrang {
+        color: #fff;
     }
-    .Pink
-    {
-        color:#E91E63;
+
+    .Pink {
+        color: #E91E63;
     }
-    .Yellow
-    {
-        color:#FDD835;
+
+    .Yellow {
+        color: #FDD835;
     }
-    .shop-menu >ul >li >a
-    {
-        background-color:initial !important;
-    }   
-    .header-middle .container .row
-    {
-        border-bottom:none !important;
+
+    .shop-menu > ul > li > a {
+        background-color: initial !important;
     }
-    .divGiua{
-        position:absolute;
-    vertical-align:middle;
+
+    .header-middle .container .row {
+        border-bottom: none !important;
     }
-    html,body,.container {
- height: 100%;
-}
-.container {
- display: table;
-}
-.row
-{
- height: 100%;
- display: table-row;
-}
-.vertical-center
-{
- display: table-cell;
- float: none;
- vertical-align: middle;
-}
 </style>
 <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 vertical-center">
-            <div class="login-panel panel panel-default dangNhap">
-                <div class="panel-body">
-                    @if (ViewBag.Error != null)
-                    {
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="login-panel panel panel-default dangNhap">
+            <div class="panel-body">
+                @if (ViewBag.Error != null)
+                {
                     <div class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Lỗi!</strong>Tài khoản, hoặc mật khẩu không đúng
                     </div>
-                    }
-                    <form class="form-horizontal" method="post" id="frmLogin">
-                        <div class="form-group">
-                            <span class="col-sm-2 control-label fa fa-user mauTrang fa-2x"></span>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Tên đăng nhập">
-                            </div>
+                }
+                <form class="form-horizontal" method="post" id="frmLogin">
+                    <div class="form-group">
+                        <label class="col-sm-2 fa fa-user mauTrang fa-2x text-center" ></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Tên đăng nhập">
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label fa fa-lock fa-2x mauTrang"></label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="Password" name="Password" placeholder="Mật khẩu">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 text-center fa fa-lock fa-2x mauTrang"></label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="Password" name="Password" placeholder="Mật khẩu">
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <label class="mauTrang">
-                                    @Html.CheckBoxFor(m => m.Remeber) Ghi Nhớ
-                                </label>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <label class="mauTrang">
+                                @Html.CheckBoxFor(m => m.Remeber) Ghi Nhớ
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Sign in</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-        </div><!-- /.col-->
-</div><!-- /.row -->	
+        </div>
+    </div><!-- /.col-->
+</div><!-- /.row -->
 
 @section js
-{   
-<script src="~/Assets/jQueryValidate/jquery.validate.min.js"></script>
+{
+    <script src="~/Assets/jQueryValidate/jquery.validate.min.js"></script>
     <script type="text/javascript">
         $('#frmLogin').validate({
             rules: {

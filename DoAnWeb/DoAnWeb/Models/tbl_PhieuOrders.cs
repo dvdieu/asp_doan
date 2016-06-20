@@ -25,6 +25,8 @@ namespace DoAnWeb.Models
         public int NguoiSuDungID { get; set; }
         public int TongSoLuong { get; set; }
         public decimal TongTien { get; set; }
+        public Nullable<bool> TinhTrangThanhToan { get; set; }
+        public Nullable<bool> TinhTrangGiaoHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ChiTietOrders> tbl_ChiTietOrders { get; set; }

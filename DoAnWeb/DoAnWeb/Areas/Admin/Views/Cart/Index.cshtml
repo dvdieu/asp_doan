@@ -1,0 +1,154 @@
+﻿@using DoAnWeb.Areas.Admin.Models
+@model List<Poco_DonHang_IndexPage>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+}
+@section title
+{
+    Quản lý đơn hàng
+}
+<div class="table-responsive">
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="text-center">Mã đơn hàng</th>
+                <th class="text-center">Tên khách hàng</th>
+                <th class="text-center">Ngày đặt</th>
+                <th class="text-center">Giờ đặt</th>
+                <th class="text-center">Tổng số lượng</th>
+                <th class="text-center">Tổng tiền</th>
+                <th class="text-center">Tình trạng thanh toán</th>
+                <th class="text-center">Tình trạng giao hàng</th>
+                <th class="text-center">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody class="text-right">
+            @foreach (Poco_DonHang_IndexPage item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @item.MaDonHang
+                    </td>
+                    <td class="text-center">
+                        @item.TenKhachHang
+                    </td>
+                    <td class="text-center">
+                        @item.NgayLapPhieu
+                    </td>
+                    <td class="text-center">
+                        @item.GioLap
+                    </td>
+                    <td class="text-center">
+                        @item.TongSoLuong
+                    </td>
+                    <td class="text-center">
+                        @string.Format("{0:N0}", @item.TongTien) VND
+                    </td>
+                    <td class="text-center" style="vertical-align: bottom;">
+                        @if (item.TinhTrangThanhToan == true)
+                        {
+                            <label class="text-center">
+                                <i class="fa fa-money fa-2x" style="color:#009688;"></i><br />Đã thanh toán
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="text-center">
+                                <i class="fa fa-exclamation-triangle" style="color:#F44336;"></i>Chưa thanh toán</label>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <a href="#" class="btn btn-danger" role="button">
+                                            <i class="fa fa-edit"></i>
+                                            Cập nhật
+                                        </a>
+                                    </div>
+                                </div>
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align: bottom;">
+                        @if (item.TinhTrangGiaoHang == true)
+                        {
+                            <label class="text-center">
+                                <i class="fa fa-truck fa-2x" style="color:#E91E63;"></i>
+                                <br />Đã giao
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="text-center">
+                                <i class="fa fa-clock-o" style="color:#F44336;"></i>Chưa Giao
+                            </label>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <i class="fa fa-edit"></i>
+                                        Cập nhật
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <div class="form-group">
+                            <div class="col-sm-12 center-block">
+                                <a href="#" class="btn btn-success" role="button">
+                                    <i class="fa fa-edit"></i>
+                                    Xem
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form class="form-horizontal" method="post" action="@Url.Action("Delete", "Products")" id="frmDelete">
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-2">
+                <input type="hidden" value="" name="id" id="txtDelete" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section js
+{
+    <script src="~/Areas/Admin/Assets/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $('#myTable').DataTable();
+        function submitformDelete(item) {
+            var id = ($(item).data('sanphamid'));
+            $('#txtDelete').val(id);
+            $('#frmDelete').submit();
+        }
+        $('.btnDelete').click(function () {
+            var item = this;
+            swal({
+                title: 'Bạn đang thực hiện thao tác nguy hiểm',
+                text: "Bạn thực sự muốn xóa sản phẩm này",
+                type: 'warning',
+                cancelButtonText: 'Hủy bỏ',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xác nhận'
+            }).then(function () {
+                swal(
+                  'Đã xóa!',
+                  'Sản phẩm này đã bị xóa.',
+                  'success'
+                ), submitformDelete(item);
+            })
+        });
+
+    </script>
+}
