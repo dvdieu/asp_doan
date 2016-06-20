@@ -419,11 +419,15 @@
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assets\font-awesome-4.6.3\fonts\FontAwesome.otf" />
-    <Content Include="Models\QuanLyRuou.Context.tt">
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QuanLyRuou.tt">
+    <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -452,6 +456,39 @@
     <Compile Include="Models\Helper\Poco_Index_Page.cs" />
     <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ChiTietOrders.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_LoaiSanPhams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_NguoiSuDungs.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_NhaSanXuats.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_PhieuOrders.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_SanPhams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -504,11 +541,12 @@
     <Content Include="Areas\Admin\Assets\datatables\media\images\Sorting icons.psd" />
     <Content Include="Areas\Admin\Assets\datatables\Readme.md" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
-    <EntityDeploy Include="Models\QuanLyRuou.edmx">
+    <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QuanLyRuou.edmx.diagram">
-      <DependentUpon>QuanLyRuou.edmx</DependentUpon>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
