@@ -9,9 +9,11 @@ namespace DoAnWeb.Controllers
 {
     public class ProductsController : Controller
     {
-        private int PhanTrang(List<tbl_SanPhams> list,int soPhanTu)
+        private int PhanTrang(int total,int soPhanTu)
         {
-            return (list.Count / soPhanTu)+1;
+            if (total % soPhanTu == 0)
+                return (total / soPhanTu);
+            return (total / soPhanTu)+1;
         }
         // GET: Products/ByCartegory
         public ActionResult ByCartegory(int? id,int page=1)
@@ -25,11 +27,10 @@ namespace DoAnWeb.Controllers
                 ViewBag.CatID = id;
 
                 int soPhanTu = 4;
-                List<tbl_SanPhams> list = ctx.tbl_SanPhams.Where(p=>p.LoaiSanPhamID==id).ToList();
+                List<tbl_SanPhams> list = ctx.tbl_SanPhams.Where(p=>p.LoaiSanPhamID==id &&p.DaXoa==false && p.TinhTrang==true).ToList();
                 Poco_Product_Page item = new Poco_Product_Page();
-                int soTrang = PhanTrang(list, soPhanTu);
                 item.DanhSachSanPham = list.Skip((page - 1) * soPhanTu).Take(soPhanTu).ToList();
-                item.SoPage = PhanTrang(list, soPhanTu);
+                item.SoPage = PhanTrang(list.Count, soPhanTu);
                 item.CurPage = page;
                 item.MaSanPham = id.Value;
                 ViewBag.Pages = item.SoPage;
@@ -62,7 +63,7 @@ namespace DoAnWeb.Controllers
             }
             using (ModelEntities ctx = new ModelEntities())
             {
-                return PartialView(ctx.tbl_SanPhams.Where(p => p.LoaiSanPhamID == id.Value && p.SanPhamID != spID).ToList());
+                return PartialView(ctx.tbl_SanPhams.Where(p => p.LoaiSanPhamID == id.Value && p.SanPhamID != spID &&p.DaXoa==false && p.TinhTrang==true).ToList());
             }
         }
     }

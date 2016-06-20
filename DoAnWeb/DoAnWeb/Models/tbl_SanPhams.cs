@@ -34,6 +34,7 @@ namespace DoAnWeb.Models
         public Nullable<bool> DaXoa { get; set; }
         public string MoTaNgan { get; set; }
         public string MoTaDai { get; set; }
+        public Nullable<System.DateTime> NgayNhap { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ChiTietOrders> tbl_ChiTietOrders { get; set; }

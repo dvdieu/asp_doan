@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_ChiTietOrders">
+          <Key>
+            <PropertyRef Name="ChiTietPhieuID" />
+          </Key>
+          <Property Name="ChiTietPhieuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhieuOrderID" Type="int" Nullable="false" />
+          <Property Name="SanPhamID" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_LoaiSanPhams">
+          <Key>
+            <PropertyRef Name="LoaiSanPhamID" />
+          </Key>
+          <Property Name="LoaiSanPhamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiSanPham" Type="nvarchar(max)" />
+          <Property Name="DaXoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_NguoiSuDungs">
+          <Key>
+            <PropertyRef Name="NguoiSuDungID" />
+          </Key>
+          <Property Name="NguoiSuDungID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNguoiSuDung" Type="nvarchar(max)" />
+          <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="GioiTinh" Type="int" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="SoDienThoai" Type="varchar(max)" />
+          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="100" />
+          <Property Name="MatKhau" Type="nvarchar(max)" />
+          <Property Name="Quyen" Type="int" />
+          <Property Name="DaXoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_NhaSanXuats">
+          <Key>
+            <PropertyRef Name="NhaSanXuatID" />
+          </Key>
+          <Property Name="NhaSanXuatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhaSanXuat" Type="nvarchar(max)" />
+          <Property Name="DaXoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_PhieuOrders">
+          <Key>
+            <PropertyRef Name="PhieuOrderID" />
+          </Key>
+          <Property Name="PhieuOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayLapPhieu" Type="datetime" Nullable="false" />
+          <Property Name="NguoiSuDungID" Type="int" Nullable="false" />
+          <Property Name="TongSoLuong" Type="int" Nullable="false" />
+          <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_SanPhams">
+          <Key>
+            <PropertyRef Name="SanPhamID" />
+          </Key>
+          <Property Name="SanPhamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSanPham" Type="nvarchar(max)" />
+          <Property Name="DungTich" Type="nvarchar(max)" />
+          <Property Name="NongDo" Type="int" />
+          <Property Name="LoaiSanPhamID" Type="int" />
+          <Property Name="NhaSanXuatID" Type="int" />
+          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="SoLanMua" Type="int" />
+          <Property Name="SoLanXem" Type="int" />
+          <Property Name="TinhTrang" Type="bit" />
+          <Property Name="DaXoa" Type="bit" />
+          <Property Name="MoTaNgan" Type="nvarchar(max)" />
+          <Property Name="MoTaDai" Type="nvarchar(max)" />
+          <Property Name="NgayNhap" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__tbl_ChiTi__Phieu__1DE57479">
+          <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="1" />
+          <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_PhieuOrders">
+              <PropertyRef Name="PhieuOrderID" />
+            </Principal>
+            <Dependent Role="tbl_ChiTietOrders">
+              <PropertyRef Name="PhieuOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_ChiTi__SanPh__1ED998B2">
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="1" />
+          <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_SanPhams">
+              <PropertyRef Name="SanPhamID" />
+            </Principal>
+            <Dependent Role="tbl_ChiTietOrders">
+              <PropertyRef Name="SanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Phieu__Nguoi__1CF15040">
+          <End Role="tbl_NguoiSuDungs" Type="Self.tbl_NguoiSuDungs" Multiplicity="1" />
+          <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_NguoiSuDungs">
+              <PropertyRef Name="NguoiSuDungID" />
+            </Principal>
+            <Dependent Role="tbl_PhieuOrders">
+              <PropertyRef Name="NguoiSuDungID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_SanPh__LoaiS__1B0907CE">
+          <End Role="tbl_LoaiSanPhams" Type="Self.tbl_LoaiSanPhams" Multiplicity="0..1" />
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_LoaiSanPhams">
+              <PropertyRef Name="LoaiSanPhamID" />
+            </Principal>
+            <Dependent Role="tbl_SanPhams">
+              <PropertyRef Name="LoaiSanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_SanPh__NhaSa__1BFD2C07">
+          <End Role="tbl_NhaSanXuats" Type="Self.tbl_NhaSanXuats" Multiplicity="0..1" />
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_NhaSanXuats">
+              <PropertyRef Name="NhaSanXuatID" />
+            </Principal>
+            <Dependent Role="tbl_SanPhams">
+              <PropertyRef Name="NhaSanXuatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBModelStoreContainer">
+          <EntitySet Name="tbl_ChiTietOrders" EntityType="Self.tbl_ChiTietOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LoaiSanPhams" EntityType="Self.tbl_LoaiSanPhams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NguoiSuDungs" EntityType="Self.tbl_NguoiSuDungs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NhaSanXuats" EntityType="Self.tbl_NhaSanXuats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PhieuOrders" EntityType="Self.tbl_PhieuOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SanPhams" EntityType="Self.tbl_SanPhams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_ChiTi__Phieu__1DE57479" Association="Self.FK__tbl_ChiTi__Phieu__1DE57479">
+            <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
+            <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTi__SanPh__1ED998B2" Association="Self.FK__tbl_ChiTi__SanPh__1ED998B2">
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+            <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Phieu__Nguoi__1CF15040" Association="Self.FK__tbl_Phieu__Nguoi__1CF15040">
+            <End Role="tbl_NguoiSuDungs" EntitySet="tbl_NguoiSuDungs" />
+            <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_SanPh__LoaiS__1B0907CE" Association="Self.FK__tbl_SanPh__LoaiS__1B0907CE">
+            <End Role="tbl_LoaiSanPhams" EntitySet="tbl_LoaiSanPhams" />
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_SanPh__NhaSa__1BFD2C07" Association="Self.FK__tbl_SanPh__NhaSa__1BFD2C07">
+            <End Role="tbl_NhaSanXuats" EntitySet="tbl_NhaSanXuats" />
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_ChiTietOrders">
+          <Key>
+            <PropertyRef Name="ChiTietPhieuID" />
+          </Key>
+          <Property Name="ChiTietPhieuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhieuOrderID" Type="Int32" Nullable="false" />
+          <Property Name="SanPhamID" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="tbl_PhieuOrders" Relationship="Self.FK__tbl_ChiTi__Phieu__1DE57479" FromRole="tbl_ChiTietOrders" ToRole="tbl_PhieuOrders" />
+          <NavigationProperty Name="tbl_SanPhams" Relationship="Self.FK__tbl_ChiTi__SanPh__1ED998B2" FromRole="tbl_ChiTietOrders" ToRole="tbl_SanPhams" />
+        </EntityType>
+        <EntityType Name="tbl_LoaiSanPhams">
+          <Key>
+            <PropertyRef Name="LoaiSanPhamID" />
+          </Key>
+          <Property Name="LoaiSanPhamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DaXoa" Type="Boolean" />
+          <NavigationProperty Name="tbl_SanPhams" Relationship="Self.FK__tbl_SanPh__LoaiS__1B0907CE" FromRole="tbl_LoaiSanPhams" ToRole="tbl_SanPhams" />
+        </EntityType>
+        <EntityType Name="tbl_NguoiSuDungs">
+          <Key>
+            <PropertyRef Name="NguoiSuDungID" />
+          </Key>
+          <Property Name="NguoiSuDungID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNguoiSuDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <Property Name="GioiTinh" Type="Int32" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TenDangNhap" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quyen" Type="Int32" />
+          <Property Name="DaXoa" Type="Boolean" />
+          <NavigationProperty Name="tbl_PhieuOrders" Relationship="Self.FK__tbl_Phieu__Nguoi__1CF15040" FromRole="tbl_NguoiSuDungs" ToRole="tbl_PhieuOrders" />
+        </EntityType>
+        <EntityType Name="tbl_NhaSanXuats">
+          <Key>
+            <PropertyRef Name="NhaSanXuatID" />
+          </Key>
+          <Property Name="NhaSanXuatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhaSanXuat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DaXoa" Type="Boolean" />
+          <NavigationProperty Name="tbl_SanPhams" Relationship="Self.FK__tbl_SanPh__NhaSa__1BFD2C07" FromRole="tbl_NhaSanXuats" ToRole="tbl_SanPhams" />
+        </EntityType>
+        <EntityType Name="tbl_PhieuOrders">
+          <Key>
+            <PropertyRef Name="PhieuOrderID" />
+          </Key>
+          <Property Name="PhieuOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayLapPhieu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NguoiSuDungID" Type="Int32" Nullable="false" />
+          <Property Name="TongSoLuong" Type="Int32" Nullable="false" />
+          <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="tbl_ChiTietOrders" Relationship="Self.FK__tbl_ChiTi__Phieu__1DE57479" FromRole="tbl_PhieuOrders" ToRole="tbl_ChiTietOrders" />
+          <NavigationProperty Name="tbl_NguoiSuDungs" Relationship="Self.FK__tbl_Phieu__Nguoi__1CF15040" FromRole="tbl_PhieuOrders" ToRole="tbl_NguoiSuDungs" />
+        </EntityType>
+        <EntityType Name="tbl_SanPhams">
+          <Key>
+            <PropertyRef Name="SanPhamID" />
+          </Key>
+          <Property Name="SanPhamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DungTich" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NongDo" Type="Int32" />
+          <Property Name="LoaiSanPhamID" Type="Int32" />
+          <Property Name="NhaSanXuatID" Type="Int32" />
+          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="SoLanMua" Type="Int32" />
+          <Property Name="SoLanXem" Type="Int32" />
+          <Property Name="TinhTrang" Type="Boolean" />
+          <Property Name="DaXoa" Type="Boolean" />
+          <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaDai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayNhap" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_ChiTietOrders" Relationship="Self.FK__tbl_ChiTi__SanPh__1ED998B2" FromRole="tbl_SanPhams" ToRole="tbl_ChiTietOrders" />
+          <NavigationProperty Name="tbl_LoaiSanPhams" Relationship="Self.FK__tbl_SanPh__LoaiS__1B0907CE" FromRole="tbl_SanPhams" ToRole="tbl_LoaiSanPhams" />
+          <NavigationProperty Name="tbl_NhaSanXuats" Relationship="Self.FK__tbl_SanPh__NhaSa__1BFD2C07" FromRole="tbl_SanPhams" ToRole="tbl_NhaSanXuats" />
+        </EntityType>
+        <Association Name="FK__tbl_ChiTi__Phieu__1DE57479">
+          <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="1" />
+          <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_PhieuOrders">
+              <PropertyRef Name="PhieuOrderID" />
+            </Principal>
+            <Dependent Role="tbl_ChiTietOrders">
+              <PropertyRef Name="PhieuOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_ChiTi__SanPh__1ED998B2">
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="1" />
+          <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_SanPhams">
+              <PropertyRef Name="SanPhamID" />
+            </Principal>
+            <Dependent Role="tbl_ChiTietOrders">
+              <PropertyRef Name="SanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_SanPh__LoaiS__1B0907CE">
+          <End Role="tbl_LoaiSanPhams" Type="Self.tbl_LoaiSanPhams" Multiplicity="0..1" />
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_LoaiSanPhams">
+              <PropertyRef Name="LoaiSanPhamID" />
+            </Principal>
+            <Dependent Role="tbl_SanPhams">
+              <PropertyRef Name="LoaiSanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Phieu__Nguoi__1CF15040">
+          <End Role="tbl_NguoiSuDungs" Type="Self.tbl_NguoiSuDungs" Multiplicity="1" />
+          <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_NguoiSuDungs">
+              <PropertyRef Name="NguoiSuDungID" />
+            </Principal>
+            <Dependent Role="tbl_PhieuOrders">
+              <PropertyRef Name="NguoiSuDungID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_SanPh__NhaSa__1BFD2C07">
+          <End Role="tbl_NhaSanXuats" Type="Self.tbl_NhaSanXuats" Multiplicity="0..1" />
+          <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_NhaSanXuats">
+              <PropertyRef Name="NhaSanXuatID" />
+            </Principal>
+            <Dependent Role="tbl_SanPhams">
+              <PropertyRef Name="NhaSanXuatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_ChiTietOrders" EntityType="Self.tbl_ChiTietOrders" />
+          <EntitySet Name="tbl_LoaiSanPhams" EntityType="Self.tbl_LoaiSanPhams" />
+          <EntitySet Name="tbl_NguoiSuDungs" EntityType="Self.tbl_NguoiSuDungs" />
+          <EntitySet Name="tbl_NhaSanXuats" EntityType="Self.tbl_NhaSanXuats" />
+          <EntitySet Name="tbl_PhieuOrders" EntityType="Self.tbl_PhieuOrders" />
+          <EntitySet Name="tbl_SanPhams" EntityType="Self.tbl_SanPhams" />
+          <AssociationSet Name="FK__tbl_ChiTi__Phieu__1DE57479" Association="Self.FK__tbl_ChiTi__Phieu__1DE57479">
+            <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
+            <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ChiTi__SanPh__1ED998B2" Association="Self.FK__tbl_ChiTi__SanPh__1ED998B2">
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+            <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_SanPh__LoaiS__1B0907CE" Association="Self.FK__tbl_SanPh__LoaiS__1B0907CE">
+            <End Role="tbl_LoaiSanPhams" EntitySet="tbl_LoaiSanPhams" />
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Phieu__Nguoi__1CF15040" Association="Self.FK__tbl_Phieu__Nguoi__1CF15040">
+            <End Role="tbl_NguoiSuDungs" EntitySet="tbl_NguoiSuDungs" />
+            <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_SanPh__NhaSa__1BFD2C07" Association="Self.FK__tbl_SanPh__NhaSa__1BFD2C07">
+            <End Role="tbl_NhaSanXuats" EntitySet="tbl_NhaSanXuats" />
+            <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBModelStoreContainer" CdmEntityContainer="ModelEntities">
+          <EntitySetMapping Name="tbl_ChiTietOrders">
+            <EntityTypeMapping TypeName="WEBModel.tbl_ChiTietOrders">
+              <MappingFragment StoreEntitySet="tbl_ChiTietOrders">
+                <ScalarProperty Name="ChiTietPhieuID" ColumnName="ChiTietPhieuID" />
+                <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />
+                <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LoaiSanPhams">
+            <EntityTypeMapping TypeName="WEBModel.tbl_LoaiSanPhams">
+              <MappingFragment StoreEntitySet="tbl_LoaiSanPhams">
+                <ScalarProperty Name="LoaiSanPhamID" ColumnName="LoaiSanPhamID" />
+                <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
+                <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NguoiSuDungs">
+            <EntityTypeMapping TypeName="WEBModel.tbl_NguoiSuDungs">
+              <MappingFragment StoreEntitySet="tbl_NguoiSuDungs">
+                <ScalarProperty Name="NguoiSuDungID" ColumnName="NguoiSuDungID" />
+                <ScalarProperty Name="TenNguoiSuDung" ColumnName="TenNguoiSuDung" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+                <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NhaSanXuats">
+            <EntityTypeMapping TypeName="WEBModel.tbl_NhaSanXuats">
+              <MappingFragment StoreEntitySet="tbl_NhaSanXuats">
+                <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
+                <ScalarProperty Name="TenNhaSanXuat" ColumnName="TenNhaSanXuat" />
+                <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PhieuOrders">
+            <EntityTypeMapping TypeName="WEBModel.tbl_PhieuOrders">
+              <MappingFragment StoreEntitySet="tbl_PhieuOrders">
+                <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />
+                <ScalarProperty Name="NgayLapPhieu" ColumnName="NgayLapPhieu" />
+                <ScalarProperty Name="NguoiSuDungID" ColumnName="NguoiSuDungID" />
+                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SanPhams">
+            <EntityTypeMapping TypeName="WEBModel.tbl_SanPhams">
+              <MappingFragment StoreEntitySet="tbl_SanPhams">
+                <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="DungTich" ColumnName="DungTich" />
+                <ScalarProperty Name="NongDo" ColumnName="NongDo" />
+                <ScalarProperty Name="LoaiSanPhamID" ColumnName="LoaiSanPhamID" />
+                <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="SoLanMua" ColumnName="SoLanMua" />
+                <ScalarProperty Name="SoLanXem" ColumnName="SoLanXem" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="MoTaDai" ColumnName="MoTaDai" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
