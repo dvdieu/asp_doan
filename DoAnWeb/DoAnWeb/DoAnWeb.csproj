@@ -493,6 +493,7 @@
     <Content Include="Areas\Admin\Assets\datatables\media\images\Sorting icons.psd" />
     <Content Include="Areas\Admin\Assets\datatables\Readme.md" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
