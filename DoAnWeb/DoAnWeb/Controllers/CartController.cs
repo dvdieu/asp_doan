@@ -72,5 +72,47 @@ namespace DoAnWeb.Controllers
             CurrentContext.Cart().UpdateItem(proId,quantity);
             return RedirectToAction("Index", "Cart");
         }
+
+        //POST: /Cart/Checkout
+        [HttpPost]
+        public ActionResult Checkout()
+        {
+
+            tbl_PhieuOrders ord = new tbl_PhieuOrders
+            {
+                NgayLapPhieu = DateTime.Now,
+                NguoiSuDungID = CurrentContext.getCurrenUser().NguoiSuDungID,
+                TongSoLuong = 0,
+                TongTien = 0
+            };
+
+            using (ModelEntities ctx = new ModelEntities()) {
+                decimal total = 0;
+                int totalAmount = 0;
+        
+                foreach (CartItem item in CurrentContext.Cart().Items) {
+                    tbl_SanPhams pro = ctx.tbl_SanPhams.Where(p => p.SanPhamID == item.ProID).FirstOrDefault();
+                    if (pro != null) { 
+                        tbl_ChiTietOrders d = new tbl_ChiTietOrders {
+                            SanPhamID = item.ProID,
+                            SoLuong = item.Quantity,
+                            DonGia = (decimal)pro.Gia,
+                            ThanhTien = (decimal)(item.Quantity * pro.Gia)
+                        };
+
+                        ord.tbl_ChiTietOrders.Add(d);
+                        totalAmount += d.SoLuong;
+                        total += d.ThanhTien;
+                    }
+                }
+                ord.TongSoLuong = totalAmount;
+                ord.TongTien = total;
+                ctx.tbl_PhieuOrders.Add(ord);
+                ctx.SaveChanges();
+            }
+            CurrentContext.Cart().Items.Clear();
+            return RedirectToAction("Index", "Cart");
+        }
+
     }
 }

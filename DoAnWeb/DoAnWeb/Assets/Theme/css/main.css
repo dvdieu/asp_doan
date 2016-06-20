@@ -13,6 +13,7 @@ body {
   background:;
   position: relative;
   font-weight:400px;
+
 }
 
 ul li {
@@ -464,6 +465,7 @@ ul.sub-menu {
 }
 
 .footer-widget {
+    margin-top:50px;
   margin-bottom: 68px;
 }
 
@@ -1541,7 +1543,7 @@ h2.title {
 
 .breadcrumbs .breadcrumb {
   background:transparent;
-  margin-bottom: 75px;
+  margin-bottom: 15px;
   padding-left: 0;
 }
 
@@ -1607,13 +1609,13 @@ h2.title {
 
 
 #cart_items .cart_info .cart_description h4 {
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 #cart_items .cart_info .cart_description h4 a {
   color: #363432;
   font-family: 'Roboto',sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: normal;
 
 }
@@ -1636,7 +1638,7 @@ h2.title {
 
 .cart_product {
   display: block;
-  margin: 15px -70px 10px 25px;
+  margin: 5px 5px 10px 25px;
 }
 
 .cart_quantity_button a {
@@ -1651,6 +1653,15 @@ h2.title {
   float: left;
 }
 
+.cart_price {
+    width:150px;
+
+}
+
+.cart_quantity {
+    width:150px;
+
+}
 
 .cart_quantity_input {
   color: #696763;
@@ -1663,15 +1674,16 @@ h2.title {
 
 
 .cart_delete  {
-  display: block;
-  margin-right: -12px;
+  width:180px;
+  display: inline-block;
+
   overflow: hidden;
 }
 
 
 .cart_delete a {
   background:#F0F0E9;
-  color: #FFFFFF;
+  color: #333;
   padding: 5px 7px;
   font-size: 16px
 }
