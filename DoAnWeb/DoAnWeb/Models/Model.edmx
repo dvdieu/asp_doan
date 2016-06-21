@@ -58,6 +58,8 @@
           <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TinhTrangThanhToan" Type="bit" />
           <Property Name="TinhTrangGiaoHang" Type="bit" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_SanPhams">
           <Key>
@@ -231,6 +233,8 @@
           <NavigationProperty Name="tbl_NguoiSuDungs" Relationship="Self.FK__tbl_Phieu__Nguoi__1CF15040" FromRole="tbl_PhieuOrders" ToRole="tbl_NguoiSuDungs" />
           <Property Name="TinhTrangThanhToan" Type="Boolean" />
           <Property Name="TinhTrangGiaoHang" Type="Boolean" />
+          <Property Name="DiaChi" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_SanPhams">
           <Key>
@@ -398,6 +402,8 @@
           <EntitySetMapping Name="tbl_PhieuOrders">
             <EntityTypeMapping TypeName="WEBModel.tbl_PhieuOrders">
               <MappingFragment StoreEntitySet="tbl_PhieuOrders">
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
                 <ScalarProperty Name="TinhTrangThanhToan" ColumnName="TinhTrangThanhToan" />
                 <ScalarProperty Name="PhieuOrderID" ColumnName="PhieuOrderID" />

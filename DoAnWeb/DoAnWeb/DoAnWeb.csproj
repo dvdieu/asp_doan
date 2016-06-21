@@ -556,6 +556,8 @@
     </Content>
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutCart.cshtml" />
+    <Content Include="Areas\Admin\Views\Cart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Cart\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
