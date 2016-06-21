@@ -110,9 +110,47 @@ namespace DoAnWeb.Controllers
 
         // GET: Account/Profiles
         [CheckLogin]
-        public ActionResult Profiles()
+        public ActionResult Index()
         {
-            return View();
+            using (ModelEntities ctx = new ModelEntities())
+            {
+                int userID = CurrentContext.getCurrenUser().NguoiSuDungID;
+                tbl_NguoiSuDungs user = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == userID).FirstOrDefault();
+                return View(user);
+            }
+                
+                    }
+        [CheckLogin]
+        public ActionResult Edit()
+        {
+            using (ModelEntities ctx = new ModelEntities())
+            {
+                int id = CurrentContext.getCurrenUser().NguoiSuDungID;
+                return View(ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == id).FirstOrDefault());
+            }
+        }
+
+        [CheckLogin]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(tbl_NguoiSuDungs item)
+        {
+            using (ModelEntities ctx = new ModelEntities())
+            {
+                tbl_NguoiSuDungs findItem = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == item.NguoiSuDungID).FirstOrDefault();
+                if (findItem == null)
+                {
+                    return RedirectToAction("Index","Account");
+                }
+                findItem.TenNguoiSuDung = item.TenNguoiSuDung;
+                findItem.SoDienThoai = item.SoDienThoai;
+                findItem.NgaySinh = item.NgaySinh;
+                findItem.DiaChi = item.DiaChi;
+                findItem.GioiTinh = item.GioiTinh;
+                findItem.MatKhau = StringUtils.Md5(item.MatKhau);
+                ctx.SaveChanges();
+                return RedirectToAction("Index", "Account");
+            }
         }
     }
 }

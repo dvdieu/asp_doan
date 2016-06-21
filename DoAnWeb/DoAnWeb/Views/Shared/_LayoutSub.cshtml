@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="@Url.Action("Index","Home")"><img src="images/home/logo.png" alt="" /></a>
+                            <a href="@Url.Action("Index","Home")"><img src="~/image/logo.png" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -69,12 +69,13 @@
                             <ul class="nav navbar-nav">
                                 @if (CurrentContext.isLogin() == false)
                                 {
+                                    <li><a href="@Url.Action("Register","Account")"><i class="fa glyphicon-pencil"></i>Đăng ký</a></li>
                                     <li><a href="@Url.Action("Login","Account")"><i class="fa fa-sign-in"></i>Đăng nhập</a></li>
                                 }
                                 else
                                 {
-                                    <li><a href="#"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
-                                    <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
+                                    <li><a href="@Url.Action("Index","Account")">@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
+                                    <li><a href="#"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
                                     <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
                                     <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
                                 }

@@ -287,6 +287,7 @@
     <Content Include="Assets\Theme\css\main.css" />
     <Content Include="Assets\Theme\css\prettyPhoto.css" />
     <Content Include="Assets\Theme\css\price-range.css" />
+    <Content Include="Assets\Theme\css\profile.css" />
     <Content Include="Assets\Theme\css\responsive.css" />
     <Content Include="Assets\Theme\images\404\404.png" />
     <Content Include="Assets\Theme\images\blog\blog-one.jpg" />
@@ -353,6 +354,7 @@
     <Content Include="Assets\Theme\js\jquery.scrollUp.min.js" />
     <Content Include="Assets\Theme\js\main.js" />
     <Content Include="Assets\Theme\js\price-range.js" />
+    <Content Include="Assets\Theme\js\profile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Assets\bootstrap-3.3.6\css\bootstrap-theme.css.map" />
@@ -525,7 +527,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Assets\datepicker\less\datepicker.less" />
     <Content Include="Views\Shared\_LayoutProfiles.cshtml" />
-    <Content Include="Views\Account\Profiles.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -556,6 +557,8 @@
     </Content>
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutCart.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -565,6 +568,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AccountEdit\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

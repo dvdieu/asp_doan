@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin cá nhân";
+    Layout = "~/Views/Shared/_LayoutProfiles.cshtml";
+}
+
+@using DoAnWeb.Models
+@using System
+@model  tbl_NguoiSuDungs
+
+@section css{
+    <link href="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />   
+}
+
+@section view_title
+{
+    Chỉnh sửa thông tin cá nhân
+}
+<h2> </h2>
+<div class="container">
+    <form class="form-horizontal" method="post" action="" enctype="multipart/form-data" id="frmEdit">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                <input type="hidden" hidden="hidden" class="form-control" name="NguoiSuDungID" value="@Model.NguoiSuDungID">
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                            <table class="table panel-title" style="text-align:center">
+                                <tr >
+                                    
+                                    <td>Tên người dùng: </td>
+                                    <td><input type="text" id="TenNguoiSuDung" name="TenNguoiSuDung"  value="@Model.TenNguoiSuDung" class="form-control" placeholder="ml" /></td>
+                                </tr>
+                                </table>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://fonixweddingplanner.com/uploads/testimonial/default.png" class="img-circle img-responsive"> </div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Mật khẩu:</td>
+                                            <td><input type="password" style="text-align:center" id="MatKhau"  name="MatKhau" value="" class="form-control" placeholder="ml" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày sinh:</td>
+                                            <td><input type="text" id="NgaySinh" name="NgaySinh" value="@DateTime.Parse(Model.NgaySinh.ToString()).ToShortDateString()" class="form-control" placeholder="ml" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giới tính:</td>
+                                            @if (@Model.GioiTinh == 1)
+                                            {
+                                                <td><input type="text" id="GioiTinh" name="GioiTinh" value="Nam" class="form-control" placeholder="ml" /></td>
+                                            }
+                                            else
+                                            {
+                                                <td><input type="text" id="GioiTinh"  name="GioiTinh"  value="Nữ" name="GioiTinh" class="form-control" placeholder="ml" /></td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>Địa chỉ:</td>
+                                            <td><input type="text" id="DiaChi" name="DiaChi" value="@Model.DiaChi" class="form-control" placeholder="ml" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Số điện thoại:</td>
+                                            <td><input type="text" id="SoDienThoai" name="SoDienThoai" value="@Model.SoDienThoai" class="form-control" placeholder="ml" /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a data-original-title="Gửi tin nhắn" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <button data-original-title="Cập nhật thông tin" data-toggle="tooltip" type="button" class="btn btn-primary" id="btnSave">
+                                <i class="fa fa-save"></i>
+                                Lưu
+                            </button>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+     </form>
+</div>
+
+@section js{
+    <script src="~/Assets/bootstrap-select-1.10.0/js/bootstrap-select.min.js"></script>
+<script src="~/Assets/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script src="~/Areas/Admin/Assets/tinymce/tinymce.min.js"></script>
+<script src="~/Areas/Admin/Assets/bootstrap-filestyle.js"></script>
+
+<script src="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var panels = $('.user-infos');
+            var panelsButton = $('.dropdown-user');
+            panels.hide();
+
+            //Click dropdown
+            panelsButton.click(function () {
+                //get data-for attribute
+                var dataFor = $(this).attr('data-for');
+                var idFor = $(dataFor);
+
+                //current button
+                var currentButton = $(this);
+                idFor.slideToggle(400, function () {
+                    //Completed slidetoggle
+                    if (idFor.is(':visible')) {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                    }
+                    else {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                    }
+                })
+            });
+
+            tinymce.init({
+                selector: '#myTextarea',
+                theme: 'modern',
+                height: 300,
+                plugins: [
+                  'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                  'save table contextmenu directionality emoticons template paste textcolor'
+                ],
+                content_css: 'css/content.css',
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+                encoding: "hmtml"
+            });
+            $(":file").filestyle({ buttonName: "btn-primary" });
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#btnSave').click(function () {
+                swal({
+                    title: 'Bạn đang thực hiện thao tác nguy hiểm',
+                    text: "Bạn muốn cập nhập thông cho sản phẩm",
+                    type: 'warning',
+                    cancelButtonText: 'Hủy bỏ',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xác nhận'
+                }).then(function () {
+                    swal(
+                      'Hoàn tất!',
+                      'Đã chỉnh sửa',
+                      'success'
+                    ),
+                    $('#frmEdit').submit();
+                })
+            });
+
+            var today = new Date();
+            document.getElementById('curDate').innerHTML = today
+        });
+    </script>
+}
+
+
