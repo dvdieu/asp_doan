@@ -1,3 +1,212 @@
-﻿@section view_title{
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using DoAnWeb.Models.Helper
+@using DoAnWeb.Models
+@using DoAnWeb.ClassHelper
+@model Poco_Index_Page
+
+@section view_title{
   Trang Chủ
-    }
+}
+
+<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center">Sản phẩm mới nhất</h2>
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @{int totalItem = Model.DanhSachSanPhamMoiNhat.Count; }
+            @{int i = 1; }
+            @Html.Raw("<div class='item active'>")
+            @foreach (tbl_SanPhams item in Model.DanhSachSanPhamMoiNhat)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
+                                <h2>@string.Format("{0:N0}", @item.Gia)</h2>
+                                <p>@item.TenSanPham</p>
+                                <form id="cartAdd-form" method="post" action="@Url.Action("Add", "Cart")">
+                                    <div class="row" style="text-align:center">
+                                        <div class="col-md-3">
+                                            <a href="@Url.Action("Detail", "Products", new { id = item.SanPhamID })"
+                                               class="btn btn-primary"
+                                               role="button">
+                                                <i class="fa fa-list"></i>Chi tiết
+                                            </a>
+                                        </div>
+                                        @if (CurrentContext.isLogin())
+                                        {
+                                            <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                            <input type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                            <div class="col-md-9">
+                                                <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                    Thêm vào giỏ
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                if (i % 3 == 0)
+                {
+                    @Html.Raw("</div>")
+                    @Html.Raw("<div class='item'>")
+                }
+                if (i == totalItem)
+                {
+                    @Html.Raw("</div>")
+                }
+                i++;
+            }
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>
+
+<br />
+<div class="recommended_items"  style=" padding-top:25px">
+    <!--recommended_items-->
+    <h2 class="title text-center">Sản phẩm xem nhiều nhất</h2>
+    <div id="recommended-item-carousel-1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @{int totalItem1 = Model.DanhSachSanPhamXemNhieuNhat.Count; }
+            @{int i1 = 1; }
+            @Html.Raw("<div class='item active'>")
+            @foreach (tbl_SanPhams item in Model.DanhSachSanPhamXemNhieuNhat)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
+                                <h2>@string.Format("{0:N0}", @item.Gia)</h2>
+                                <p>@item.TenSanPham</p>
+                                <form id="cartAdd-form" method="post" action="@Url.Action("Add", "Cart")">
+                                    <div class="row" style="text-align:center">
+                                        <div class="col-md-3">
+                                            <a href="@Url.Action("Detail", "Products", new { id = item.SanPhamID })"
+                                               class="btn btn-primary"
+                                               role="button">
+                                                <i class="fa fa-list"></i>Chi tiết
+                                            </a>
+                                        </div>
+                                        @if (CurrentContext.isLogin())
+                                        {
+                                            <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                            <input type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                            <div class="col-md-9">
+                                                <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                    Thêm vào giỏ
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                if (i1 % 3 == 0)
+                {
+                    @Html.Raw("</div>")
+                    @Html.Raw("<div class='item'>")
+                }
+                if (i1 == totalItem1)
+                {
+                    @Html.Raw("</div>")
+                }
+                i1++;
+            }
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel-1" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel-1" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>
+<br />
+<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center">Sản phẩm bán chạy nhất</h2>
+    <div id="recommended-item-carousel-2" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @{int totalItem2 = Model.DanhSachSanPhamBanChayNhat.Count; }
+            @{int i2 = 1;}
+            @Html.Raw("<div class='item active'>")
+            @foreach (tbl_SanPhams item in Model.DanhSachSanPhamBanChayNhat)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
+                                <h2>@string.Format("{0:N0}", @item.Gia)</h2>
+                                <p>@item.TenSanPham</p>
+                                <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
+                                    <div class="row" style="text-align:center">
+                                        <div class="col-md-3">
+                                            <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
+                                               class="btn btn-primary"
+                                               role="button">
+                                                <i class="fa fa-list"></i>Chi tiết
+                                            </a>
+                                        </div>
+                                        @if (CurrentContext.isLogin())
+                                        {
+                                            <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                            <input type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                            <div class="col-md-9">
+                                                <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                    Thêm vào giỏ
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                if (i2 % 3 == 0)
+                {
+                    @Html.Raw("</div>")
+                    @Html.Raw("<div class='item'>")
+                }
+                if (i2 == totalItem)
+                {
+                    @Html.Raw("</div>")
+                }
+                i2++;
+            }
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel-2" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel-2" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+
+</div>

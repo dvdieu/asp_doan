@@ -891,6 +891,8 @@ h2.title {
   font-size: 14px;
   font-weight: 400;
   color: #696763;
+  height:50px;
+
 }
 
 .productinfo img{
@@ -1059,6 +1061,14 @@ h2.title {
   padding-left: 0;
 }
 
+#recommended-item-carousel-1 .carousel-inner .item {
+  padding-left: 0;
+}
+
+#recommended-item-carousel-2 .carousel-inner .item {
+  padding-left: 0;
+}
+
 .recommended-item-control {
   position: absolute;
   top: 41%;
@@ -1077,6 +1087,8 @@ h2.title {
 
 .recommended_items  h2 {
 }
+
+
 
 .our_partners{
   overflow:hidden;

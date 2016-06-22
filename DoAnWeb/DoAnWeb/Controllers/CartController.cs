@@ -41,7 +41,7 @@ namespace DoAnWeb.Controllers
         public ActionResult Add(CartItem item) {
 
             CurrentContext.Cart().Add(item);
-            return RedirectToAction("Detail", "Products", new { id = item.ProID});
+            return RedirectToAction("Index", "Cart");
         }
 
         [HttpPost]
@@ -49,10 +49,11 @@ namespace DoAnWeb.Controllers
         {
 
             CurrentContext.Cart().Add(item);
-            return RedirectToAction("ByCartegory", "Products", new {
-                id = catId,
-                page = curpage
-            });
+            return RedirectToAction("Index", "Cart");
+            //return RedirectToAction("ByCartegory", "Products", new {
+            //    id = catId,
+            //    page = curpage
+            //});
         }
 
         //POST: /Cart/RemoveItem
@@ -83,7 +84,11 @@ namespace DoAnWeb.Controllers
                 NgayLapPhieu = DateTime.Now,
                 NguoiSuDungID = CurrentContext.getCurrenUser().NguoiSuDungID,
                 TongSoLuong = 0,
-                TongTien = 0
+                TongTien = 0,
+                DiaChi = null,
+                SoDienThoai = null,
+                TinhTrangGiaoHang = false,
+                TinhTrangThanhToan = false
             };
 
             using (ModelEntities ctx = new ModelEntities()) {
@@ -109,8 +114,8 @@ namespace DoAnWeb.Controllers
                 ord.TongTien = total;
                 ord.TinhTrangGiaoHang = false;
                 ord.TinhTrangThanhToan = false;
-                ord.DiaChi = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().DiaChi;
-                ord.SoDienThoai = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().SoDienThoai;
+                //ord.DiaChi = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().DiaChi;
+                //ord.SoDienThoai = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().SoDienThoai;
                 ctx.tbl_PhieuOrders.Add(ord);
                 ctx.SaveChanges();
             }
