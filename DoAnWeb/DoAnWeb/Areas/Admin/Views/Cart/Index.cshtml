@@ -35,25 +35,25 @@
             {
                 <tr>
                     <td class="text-center">
-                        @item.MaDonHang
+                        @item.ThongTinDonHang.MaDonHang
                     </td>
                     <td class="text-center">
-                        @item.TenKhachHang
+                        @item.ThongTinKhachHang.TenKhachHang
                     </td>
                     <td class="text-center">
-                        @item.NgayLapPhieu
+                        @item.ThongTinDonHang.NgayLapPhieu
                     </td>
                     <td class="text-center">
-                        @item.GioLap
+                        @item.ThongTinDonHang.GioLap
                     </td>
                     <td class="text-center">
-                        @item.TongSoLuong
+                        @item.ThongTinDonHang.TongSoLuong
                     </td>
                     <td class="text-center">
-                        @string.Format("{0:N0}", @item.TongTien) VND
+                        @string.Format("{0:N0}", @item.ThongTinDonHang.TongTien) VND
                     </td>
                     <td class="text-center" style="vertical-align: bottom;">
-                        @if (item.TinhTrangThanhToan == true)
+                        @if (item.ThongTinDonHang.TinhTrangThanhToan == true)
                         {
                             <label class="text-center">
                                 <i class="fa fa-money fa-2x" style="color:#009688;"></i><br />Đã thanh toán
@@ -65,7 +65,7 @@
                                 <i class="fa fa-exclamation-triangle" style="color:#F44336;"></i>Chưa thanh toán</label>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-danger thanhToan" data-cardid="@item.MaDonHang" role="button">
+                                        <button type="button" class="btn btn-danger thanhToan" data-cardid="@item.ThongTinDonHang.MaDonHang" role="button">
                                             <i class="fa fa-edit"></i>
                                             Cập nhật
                                         </button>
@@ -74,7 +74,7 @@
                         }
                     </td>
                     <td class="text-center" style="vertical-align: bottom;">
-                        @if (item.TinhTrangGiaoHang == true)
+                        @if (item.ThongTinDonHang.TinhTrangGiaoHang == true)
                         {
                             <label class="text-center">
                                 <i class="fa fa-truck fa-2x" style="color:#E91E63;"></i>
@@ -88,7 +88,7 @@
                             </label>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button type="button" class="btn btn-primary giaoHang" data-cardid="@item.MaDonHang" role="button">
+                                    <button type="button" class="btn btn-primary giaoHang" data-cardid="@item.ThongTinDonHang.MaDonHang" role="button">
                                         <i class="fa fa-edit"></i>
                                         Cập nhật
                                     </button>

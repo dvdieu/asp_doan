@@ -443,7 +443,11 @@
     <Compile Include="Areas\Admin\Controllers\CartController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_ChiTiet_Order.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_DonHang_ChiTiet.cs" />
     <Compile Include="Areas\Admin\Models\Poco_DonHang_IndexPage.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_Info_DonHang.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_Info_KhachHang.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Page_SuaSanPham.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Page_ThemSanPham.cs" />
     <Compile Include="ClassHelper\CurrentContext.cs" />

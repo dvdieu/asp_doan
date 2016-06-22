@@ -37,8 +37,6 @@
                         <img src="~/image/@item.SanPhamID/main_thumn.jpg" style="width:58px;height:58px;" class="text-center" />
                     </td>
                     <td class="text-center">@item.TenSanPham</td>
-                    @*<td>@item.tbl_LoaiSanPhams.TenLoaiSanPham</td>
-                        <td>@item.tbl_NhaSanXuats.TenNhaSanXuat</td>*@
                     <td>@item.SoLuong</td>
                     <td>@item.Gia</td>
                     <td>@item.DungTich ml</td>
@@ -76,7 +74,7 @@
     <form class="form-horizontal" method="post" action="@Url.Action("Delete", "Products")" id="frmDelete">
         <div class="form-group">
             <div class="col-sm-2 col-sm-offset-2">
-                <input type="hidden" value="" name="id" id="txtDelete"/>
+                <input type="hidden" value="" name="id" id="txtDelete" />
             </div>
         </div>
     </form>
@@ -88,8 +86,7 @@
     <script src="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.js"></script>
     <script type="text/javascript">
         $('#myTable').DataTable();
-        function submitformDelete(item)
-        {
+        function submitformDelete(item) {
             var id = ($(item).data('sanphamid'));
             $('#txtDelete').val(id);
             $('#frmDelete').submit();
@@ -113,6 +110,6 @@
                 ), submitformDelete(item);
             })
         });
-       
+
     </script>
 }
