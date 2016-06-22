@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutProfiles.cshtml";
+}
+
+@using DoAnWeb.Models
+@using System
+@model  tbl_NguoiSuDungs
+
+
+
+@section view_title
+{
+    Thông tin cá nhân
+}
+<h2> </h2>
+<div class="container">
+    <div class="row">
+   
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="text-align:center;">
+                        @Model.TenNguoiSuDung
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://fonixweddingplanner.com/uploads/testimonial/default.png" class="img-circle img-responsive"> </div>
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>Tên đăng nhập:</td>
+                                        <td>@Model.TenDangNhap</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ngày sinh:</td>
+                                        <td>@DateTime.Parse(Model.NgaySinh.ToString()).ToShortDateString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giới tính:</td>
+                                        @if (@Model.GioiTinh == 1)
+                                        {
+                                        <td> Nam</td>
+                                        }
+                                        else
+                                        {
+                                        <td>Nữ</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Địa chỉ:</td>
+                                        <td>@Model.DiaChi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại:</td>
+                                        <td>@Model.SoDienThoai</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a data-original-title="Gửi tin nhắn" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="pull-right">
+                        <a href="@Url.Action("Edit")" data-original-title="Cập nhật thông tin" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        @if (@Model.Quyen==0) {
+                            <a data-original-title="Xóa người dùng" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        }
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var panels = $('.user-infos');
+            var panelsButton = $('.dropdown-user');
+            panels.hide();
+
+            //Click dropdown
+            panelsButton.click(function () {
+                //get data-for attribute
+                var dataFor = $(this).attr('data-for');
+                var idFor = $(dataFor);
+
+                //current button
+                var currentButton = $(this);
+                idFor.slideToggle(400, function () {
+                    //Completed slidetoggle
+                    if (idFor.is(':visible')) {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                    }
+                    else {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                    }
+                })
+            });
+
+            
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('button').click(function (e) {
+                e.preventDefault();
+                alert("This is a demo.\n :-)");
+            });
+
+            var today = new Date();
+            document.getElementById('curDate').innerHTML = today
+        });
+    </script>
+}

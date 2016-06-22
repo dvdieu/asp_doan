@@ -107,6 +107,10 @@ namespace DoAnWeb.Controllers
                 }
                 ord.TongSoLuong = totalAmount;
                 ord.TongTien = total;
+                ord.TinhTrangGiaoHang = false;
+                ord.TinhTrangThanhToan = false;
+                ord.DiaChi = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().DiaChi;
+                ord.SoDienThoai = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().SoDienThoai;
                 ctx.tbl_PhieuOrders.Add(ord);
                 ctx.SaveChanges();
             }

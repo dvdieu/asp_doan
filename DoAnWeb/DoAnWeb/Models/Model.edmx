@@ -81,7 +81,7 @@
           <Property Name="MoTaDai" Type="nvarchar(max)" />
           <Property Name="NgayNhap" Type="datetime" />
         </EntityType>
-        <Association Name="FK__tbl_ChiTi__Phieu__1DE57479">
+        <Association Name="FK__tbl_ChiTi__Phieu__1B0907CE">
           <End Role="tbl_PhieuOrders" Type="Self.tbl_PhieuOrders" Multiplicity="1" />
           <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -93,7 +93,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_ChiTi__SanPh__1ED998B2">
+        <Association Name="FK__tbl_ChiTi__SanPh__1BFD2C07">
           <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="1" />
           <End Role="tbl_ChiTietOrders" Type="Self.tbl_ChiTietOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_SanPh__LoaiS__1B0907CE">
+        <Association Name="FK__tbl_SanPh__LoaiS__1DE57479">
           <End Role="tbl_LoaiSanPhams" Type="Self.tbl_LoaiSanPhams" Multiplicity="0..1" />
           <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbl_SanPh__NhaSa__1BFD2C07">
+        <Association Name="FK__tbl_SanPh__NhaSa__1ED998B2">
           <End Role="tbl_NhaSanXuats" Type="Self.tbl_NhaSanXuats" Multiplicity="0..1" />
           <End Role="tbl_SanPhams" Type="Self.tbl_SanPhams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,11 +148,11 @@
           <EntitySet Name="tbl_NhaSanXuats" EntityType="Self.tbl_NhaSanXuats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_PhieuOrders" EntityType="Self.tbl_PhieuOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SanPhams" EntityType="Self.tbl_SanPhams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__tbl_ChiTi__Phieu__1DE57479" Association="Self.FK__tbl_ChiTi__Phieu__1DE57479">
+          <AssociationSet Name="FK__tbl_ChiTi__Phieu__1B0907CE" Association="Self.FK__tbl_ChiTi__Phieu__1B0907CE">
             <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
             <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_ChiTi__SanPh__1ED998B2" Association="Self.FK__tbl_ChiTi__SanPh__1ED998B2">
+          <AssociationSet Name="FK__tbl_ChiTi__SanPh__1BFD2C07" Association="Self.FK__tbl_ChiTi__SanPh__1BFD2C07">
             <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
             <End Role="tbl_ChiTietOrders" EntitySet="tbl_ChiTietOrders" />
           </AssociationSet>
@@ -160,11 +160,11 @@
             <End Role="tbl_NguoiSuDungs" EntitySet="tbl_NguoiSuDungs" />
             <End Role="tbl_PhieuOrders" EntitySet="tbl_PhieuOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_SanPh__LoaiS__1B0907CE" Association="Self.FK__tbl_SanPh__LoaiS__1B0907CE">
+          <AssociationSet Name="FK__tbl_SanPh__LoaiS__1DE57479" Association="Self.FK__tbl_SanPh__LoaiS__1DE57479">
             <End Role="tbl_LoaiSanPhams" EntitySet="tbl_LoaiSanPhams" />
             <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbl_SanPh__NhaSa__1BFD2C07" Association="Self.FK__tbl_SanPh__NhaSa__1BFD2C07">
+          <AssociationSet Name="FK__tbl_SanPh__NhaSa__1ED998B2" Association="Self.FK__tbl_SanPh__NhaSa__1ED998B2">
             <End Role="tbl_NhaSanXuats" EntitySet="tbl_NhaSanXuats" />
             <End Role="tbl_SanPhams" EntitySet="tbl_SanPhams" />
           </AssociationSet>

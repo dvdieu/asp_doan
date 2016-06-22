@@ -1,11 +1,10 @@
 ﻿@using DoAnWeb.ClassHelper
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Assets/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/animate.css" rel="stylesheet" />
@@ -13,17 +12,10 @@
     <link href="~/Assets/Theme/css/prettyPhoto.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/price-range.css" rel="stylesheet" />
     <link href="~/Assets/Theme/css/responsive.css" rel="stylesheet" />
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    @RenderSection("css",false)
-</head><!--/head-->
+    <link href="~/Assets/LeftMenu/menustyle.css" rel="stylesheet" />
+    <script src="~/Assets/Theme/js/profile.js"></script>
+    @RenderSection("css", false)
+</head>
 <body>
     <header id="header">
         <!--header-->
@@ -60,7 +52,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="@Url.Action("Index","Home")"><img src="images/home/logo.png" alt="" /></a>
+                            <a href="@Url.Action("Index","Home")"><img src="~/image/logo.png" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -69,11 +61,12 @@
                             <ul class="nav navbar-nav">
                                 @if (CurrentContext.isLogin() == false)
                                 {
+                                    <li><a href="@Url.Action("Register","Account")"><i class="fa glyphicon-pencil"></i>Đăng ký</a></li>
                                     <li><a href="@Url.Action("Login","Account")"><i class="fa fa-sign-in"></i>Đăng nhập</a></li>
                                 }
                                 else
                                 {
-                                    <li><a href="#"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
+                                    <li><a href="@Url.Action("Index","Account")"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
                                     <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
                                     <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
                                     <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
@@ -86,17 +79,173 @@
         </div><!--/header-middle-->
 
     </header><!--/header-->
-    <div class="container">
-        @RenderBody()
-    </div>
-    
+    <section>
+        <div class="container">
+            <div class="row">
+                @*<div class="col-sm-3">
+                        @{Html.RenderAction("DanhMucPartial", "Category"); }
+                    </div>*@
+                <div class="col-sm-12">
+                    <div class="breadcrumbs">
+                        <ol class="breadcrumb">
+                            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li class="active">Thông tin cá nhân</li>
+                        </ol>
+                    </div>
+                    <h2 class="title text-center">@RenderSection("view_title", false)</h2>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>e</span>-shopper</h2>
+                            <p>E-shoper là trang thông tin chia sẻ kiến thức về rượu ngoại hoạt động phi lơi nhuận. Chúng tôi không kinh doanh trực tiếp trên internet.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/1/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Cognag</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/34/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Blended Scoth</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/45/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Single Malt</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/10/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Brandy</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src="https://www.google.com/permissions/images/maps-att.png" alt="" />
+                            <p style="color:black">352 Nguyễn Văn Cừ, VN(Vietnam)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Shop</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                @if (CurrentContext.isLogin() == false)
+                                {
+                                    <li><a href="@Url.Action("Register","Account")"><i class="fa glyphicon-pencil"></i>Đăng ký</a></li>
+                                    <li><a href="@Url.Action("Login","Account")"><i class="fa fa-sign-in"></i>Đăng nhập</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index","Account")">Thông tin cá nhân</a></li>
+                                    <li><a href="#"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
+                                    <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
+                                    <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Danh mục sản phẩm</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=1, page=1})">COGNAC</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=2, page=1})">BLENDED SCOTCH</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=3, page=1})">SINGLE MALT</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=4, page=1})">BRANDYs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Thông tin cửa hàng</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Nhập địa chỉ email" />
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Vui lòng đến trực tiếp đến các cửa hàng và hệ thống siêu thị rượu ngoại hoặc gọi tới số hotline để được tư vấn. ( giá trên website chỉ mang tính chất tham khảo)</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2016 E-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                </div>
+            </div>
+        </div>
+
+    </footer><!--/Footer-->
+
     <script src="~/Assets/jquery-2.2.4.min.js"></script>
-    <script src="~/Assets/Theme/js/contact.js"></script>
-    <script src="~/Assets/Theme/js/gmaps.js"></script>
-    <script src="~/Assets/Theme/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="~/Assets/Theme/js/jquery.scrollUp.min.js"></script>
-    <script src="~/Assets/Theme/js/main.js"></script>
     <script src="~/Assets/Theme/js/price-range.js"></script>
+    <script src="~/Assets/Theme/js/main.js"></script>
     <script src="~/Assets/scripts/script.js"></script>
     @RenderSection("js", false)
 </body>

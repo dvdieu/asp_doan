@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+                            <a href="@Url.Action("Index","Home")"><img src="~/image/logo.png" alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -93,11 +93,12 @@
                             <ul class="nav navbar-nav">
                                 @if (CurrentContext.isLogin() == false)
                                 {
+                                    <li><a href="@Url.Action("Register","Account")"><i class="fa glyphicon-pencil"></i>Đăng ký</a></li>
                                     <li><a href="@Url.Action("Login","Account")"><i class="fa fa-sign-in"></i>Đăng nhập</a></li>
                                 }
                                 else
                                 {
-                                    <li><a href="@Url.Action("Account","Profiles")"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
+                                    <li><a href="@Url.Action("Index","Account")"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
                                     <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
                                     <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
                                     <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
@@ -124,26 +125,24 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
                                 <li class="dropdown">
-                                    <a href="@Url.Action("Index","Home")">Shop<i class="fa fa-angle-down"></i></a>
+                                    <a href="#">Loại Rượu<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                        <li><a href="@Url.Action("ByCartegory","Products",new {id=1, page=1})">COGNAC</a></li>
+                                        <li><a href="@Url.Action("ByCartegory","Products",new {id=2, page=1})">BLENDED SCOTCH</a></li>
+                                        <li><a href="@Url.Action("ByCartegory","Products",new {id=3, page=1})">SINGLE MALT</a></li>
+                                        <li><a href="@Url.Action("ByCartegory","Products",new {id=4, page=1})">BRANDYs</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                    <a href="#">Kiến thức rượu<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                        @*<li><a href="blog.html">Blog List</a></li>
+                                        <li><a href="blog-single.html">Blog Single</a></li>*@
                                     </ul>
                                 </li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
+                                <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -160,14 +159,14 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
+                @*<div class="col-sm-3">
                     @{Html.RenderAction("DanhMucPartial", "Category"); }
-                </div>
-                <div class="col-sm-9 padding-right">
+                </div>*@
+                <div class="col-sm-12">
                     <div class="breadcrumbs">
                         <ol class="breadcrumb">
                             <li><a href="#">Home</a></li>
-                            <li class="active">Shopping Cart</li>
+                            <li class="active">Giỏ hàng</li>
                         </ol>
                     </div>
                     <h2 class="title text-center">@RenderSection("view_title", false)</h2>
@@ -176,164 +175,148 @@
             </div>
         </div>
     </section>
-            <footer id="footer">
-                <!--Footer-->
-                <div class="footer-top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="companyinfo">
-                                    <h2><span>e</span>-shopper</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                                </div>
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>e</span>-shopper</h2>
+                            <p>E-shoper là trang thông tin chia sẻ kiến thức về rượu ngoại hoạt động phi lơi nhuận. Chúng tôi không kinh doanh trực tiếp trên internet.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/1/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Cognag</p>
+                                <h2>24 DEC 2014</h2>
                             </div>
-                            <div class="col-sm-7">
-                                <div class="col-sm-3">
-                                    <div class="video-gallery text-center">
-                                        <a href="#">
-                                            <div class="iframe-img">
-                                                <img src="images/home/iframe1.png" alt="" />
-                                            </div>
-                                            <div class="overlay-icon">
-                                                <i class="fa fa-play-circle-o"></i>
-                                            </div>
-                                        </a>
-                                        <p>Circle of Hands</p>
-                                        <h2>24 DEC 2014</h2>
-                                    </div>
-                                </div>
+                        </div>
 
-                                <div class="col-sm-3">
-                                    <div class="video-gallery text-center">
-                                        <a href="#">
-                                            <div class="iframe-img">
-                                                <img src="images/home/iframe2.png" alt="" />
-                                            </div>
-                                            <div class="overlay-icon">
-                                                <i class="fa fa-play-circle-o"></i>
-                                            </div>
-                                        </a>
-                                        <p>Circle of Hands</p>
-                                        <h2>24 DEC 2014</h2>
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/34/main_thumn.jpg" />
                                     </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="video-gallery text-center">
-                                        <a href="#">
-                                            <div class="iframe-img">
-                                                <img src="images/home/iframe3.png" alt="" />
-                                            </div>
-                                            <div class="overlay-icon">
-                                                <i class="fa fa-play-circle-o"></i>
-                                            </div>
-                                        </a>
-                                        <p>Circle of Hands</p>
-                                        <h2>24 DEC 2014</h2>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
                                     </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="video-gallery text-center">
-                                        <a href="#">
-                                            <div class="iframe-img">
-                                                <img src="images/home/iframe4.png" alt="" />
-                                            </div>
-                                            <div class="overlay-icon">
-                                                <i class="fa fa-play-circle-o"></i>
-                                            </div>
-                                        </a>
-                                        <p>Circle of Hands</p>
-                                        <h2>24 DEC 2014</h2>
-                                    </div>
-                                </div>
+                                </a>
+                                <p>Blended Scoth</p>
+                                <h2>24 DEC 2014</h2>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="address">
-                                    <img src="images/home/map.png" alt="" />
-                                    <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-                                </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/45/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Single Malt</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/image/10/main_thumn.jpg" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>Brandy</p>
+                                <h2>24 DEC 2014</h2>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="footer-widget">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="single-widget">
-                                    <h2>Service</h2>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#">Online Help</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Order Status</a></li>
-                                        <li><a href="#">Change Location</a></li>
-                                        <li><a href="#">FAQ’s</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="single-widget">
-                                    <h2>Quock Shop</h2>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#">T-Shirt</a></li>
-                                        <li><a href="#">Mens</a></li>
-                                        <li><a href="#">Womens</a></li>
-                                        <li><a href="#">Gift Cards</a></li>
-                                        <li><a href="#">Shoes</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="single-widget">
-                                    <h2>Policies</h2>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#">Terms of Use</a></li>
-                                        <li><a href="#">Privecy Policy</a></li>
-                                        <li><a href="#">Refund Policy</a></li>
-                                        <li><a href="#">Billing System</a></li>
-                                        <li><a href="#">Ticket System</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="single-widget">
-                                    <h2>About Shopper</h2>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#">Company Information</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                        <li><a href="#">Store Location</a></li>
-                                        <li><a href="#">Affillate Program</a></li>
-                                        <li><a href="#">Copyright</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-sm-offset-1">
-                                <div class="single-widget">
-                                    <h2>About Shopper</h2>
-                                    <form action="#" class="searchform">
-                                        <input type="text" placeholder="Your email address" />
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                                        <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                                    </form>
-                                </div>
-                            </div>
-
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src="https://www.google.com/permissions/images/maps-att.png" alt="" />
+                            <p style="color:black">352 Nguyễn Văn Cừ, VN(Vietnam)</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="footer-bottom">
-                    <div class="container">
-                        <div class="row">
-                            <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                            <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Shop</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                @if (CurrentContext.isLogin() == false)
+                                {
+                                    <li><a href="@Url.Action("Register","Account")"><i class="fa glyphicon-pencil"></i>Đăng ký</a></li>
+                                    <li><a href="@Url.Action("Login","Account")"><i class="fa fa-sign-in"></i>Đăng nhập</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index","Account")">Thông tin cá nhân</a></li>
+                                    <li><a href="#"><i class="fa fa-crosshairs"></i> Đơn hàng</a></li>
+                                    <li><a href="@Url.Action("Index","Cart")"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@CurrentContext.Cart().GetTotal())</a></li>
+                                    <li><a href="javascript: ;" id="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a></li>
+                                }
+                            </ul>
                         </div>
                     </div>
-                </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Danh mục sản phẩm</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=1, page=1})">COGNAC</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=2, page=1})">BLENDED SCOTCH</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=3, page=1})">SINGLE MALT</a></li>
+                                <li><a href="@Url.Action("ByCartegory","Products",new {id=4, page=1})">BRANDYs</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-            </footer><!--/Footer-->
+
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Thông tin cửa hàng</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Nhập địa chỉ email" />
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Vui lòng đến trực tiếp đến các cửa hàng và hệ thống siêu thị rượu ngoại hoặc gọi tới số hotline để được tư vấn. ( giá trên website chỉ mang tính chất tham khảo)</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2016 E-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                </div>
+            </div>
+        </div>
+
+    </footer><!--/Footer-->
 
             <script src="~/Assets/jquery-2.2.4.min.js"></script>
             <script src="~/Assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>

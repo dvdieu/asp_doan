@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_LayoutCart.cshtml";
 }
 
+
+@using DoAnWeb.ClassHelper
 @using DoAnWeb.Models.Helper
 @model List<CartItemModel>
 @section view_title{
@@ -21,7 +23,19 @@
 
 @if (Model.Count == 0)
 {
-    <text>Không có dữ liệu</text>
+
+    <section style="text-align:center">
+        <div  style="padding-bottom:50px">
+            <div class="row">
+                <div class="col-md-12"  style="padding-bottom:25px">
+                    <text>Không có dữ liệu</text>
+                </div>
+                <div class="col-md-12">
+                    <a href="@Url.Action("Index","Home")"><input type="button" value="Quay lại trang chủ" class="btn btn-success" /></a>
+                </div>
+            </div>  
+        </div>
+    </section>
 }
 
 else
