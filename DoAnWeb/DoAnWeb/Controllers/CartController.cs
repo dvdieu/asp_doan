@@ -17,13 +17,17 @@ namespace DoAnWeb.Controllers
             decimal total = 0;
             var cart = CurrentContext.Cart();
             var list = new List<CartItemModel>();
-           
-            using (ModelEntities ctx = new ModelEntities()){ 
 
-                foreach (CartItem ci in cart.Items) {
+            using (ModelEntities ctx = new ModelEntities())
+            {
+
+                foreach (CartItem ci in cart.Items)
+                {
                     var pro = ctx.tbl_SanPhams.Where(p => p.SanPhamID == ci.ProID).FirstOrDefault();
-                    if (pro != null) {
-                        var cim = new CartItemModel {
+                    if (pro != null)
+                    {
+                        var cim = new CartItemModel
+                        {
                             Item = ci,
                             Product = pro
                         };
@@ -38,7 +42,8 @@ namespace DoAnWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(CartItem item) {
+        public ActionResult Add(CartItem item)
+        {
 
             CurrentContext.Cart().Add(item);
             return RedirectToAction("Index", "Cart");
@@ -70,7 +75,7 @@ namespace DoAnWeb.Controllers
         public ActionResult UpdateItem(int proId, int quantity)
         {
 
-            CurrentContext.Cart().UpdateItem(proId,quantity);
+            CurrentContext.Cart().UpdateItem(proId, quantity);
             return RedirectToAction("Index", "Cart");
         }
 
@@ -78,7 +83,6 @@ namespace DoAnWeb.Controllers
         [HttpPost]
         public ActionResult Checkout()
         {
-
             tbl_PhieuOrders ord = new tbl_PhieuOrders
             {
                 NgayLapPhieu = DateTime.Now,
@@ -91,14 +95,17 @@ namespace DoAnWeb.Controllers
                 TinhTrangThanhToan = false
             };
 
-            using (ModelEntities ctx = new ModelEntities()) {
+            using (ModelEntities ctx = new ModelEntities())
+            {
                 decimal total = 0;
                 int totalAmount = 0;
-        
-                foreach (CartItem item in CurrentContext.Cart().Items) {
+                foreach (CartItem item in CurrentContext.Cart().Items)
+                {
                     tbl_SanPhams pro = ctx.tbl_SanPhams.Where(p => p.SanPhamID == item.ProID).FirstOrDefault();
-                    if (pro != null) { 
-                        tbl_ChiTietOrders d = new tbl_ChiTietOrders {
+                    if (pro != null)
+                    {
+                        tbl_ChiTietOrders d = new tbl_ChiTietOrders
+                        {
                             SanPhamID = item.ProID,
                             SoLuong = item.Quantity,
                             DonGia = (decimal)pro.Gia,
@@ -114,14 +121,15 @@ namespace DoAnWeb.Controllers
                 ord.TongTien = total;
                 ord.TinhTrangGiaoHang = false;
                 ord.TinhTrangThanhToan = false;
-                //ord.DiaChi = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().DiaChi;
-                //ord.SoDienThoai = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == CurrentContext.getCurrenUser().NguoiSuDungID).FirstOrDefault().SoDienThoai;
+                int curID = CurrentContext.getCurrenUser().NguoiSuDungID;
+                var user = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == curID).FirstOrDefault();
+                ord.DiaChi = user.DiaChi;
+                ord.SoDienThoai = user.SoDienThoai;
                 ctx.tbl_PhieuOrders.Add(ord);
                 ctx.SaveChanges();
+                CurrentContext.Cart().Items.Clear();
+                return RedirectToAction("Index", "Cart");
             }
-            CurrentContext.Cart().Items.Clear();
-            return RedirectToAction("Index", "Cart");
         }
-
     }
 }
