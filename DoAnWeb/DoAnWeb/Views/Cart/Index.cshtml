@@ -20,104 +20,146 @@
         }
     </style>
 }
+<div class="container" style="padding-bottom:50px">
+    @if (Model.Count == 0)
+    {
 
-@if (Model.Count == 0)
-{
-
-    <section style="text-align:center">
-        <div  style="padding-bottom:50px">
-            <div class="row">
-                <div class="col-md-12"  style="padding-bottom:25px">
-                    <text>Không có dữ liệu</text>
+        <section style="text-align:center">
+            <div style="padding-bottom:50px">
+                <div class="row">
+                    <div class="col-md-12" style="padding-bottom:25px">
+                        <text>Không có dữ liệu</text>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="@Url.Action("Index","Home")"><input type="button" value="Quay lại trang chủ" class="btn btn-success" /></a>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <a href="@Url.Action("Index","Home")"><input type="button" value="Quay lại trang chủ" class="btn btn-success" /></a>
-                </div>
-            </div>  
-        </div>
-    </section>
-}
-
-else
-{
-    <form method="post" id="frmRemoveItem" action="@Url.Action("RemoveItem","Cart")">
-        <input id="txtRemoveId" type="hidden" name="proId" />
-
-    </form>
-    <form method="post" id="frmUpdateItem" action="@Url.Action("UpdateItem","Cart")">
-        <input id="txtUpdateId" type="hidden" name="proId" />
-        <input id="txtUpdateQ" type="hidden" name="quantity" />
-    </form>
-    <section id="cart_items">
-        <div class="table cart_info">
-            <table class="table table-condensed" style="text-align:center">
-                <thead>
-                    <tr class="cart_menu">
-                        <td class="image">Sản phẩm</td>
-                        <td class="description">Tên sản phẩm</td>
-                        <td class="price">Giá</td>
-                        <td class="quantity">Số lượng</td>
-                        <td class="total">Thành tiền</td>
-                        <td>Chức năng</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (var cim in Model)
-                    {
-                        <tr>
-                            <td class="cart_product">
-
-                                <img src="~/image/@cim.Product.SanPhamID/main_thumn.jpg" height="59" />
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="@Url.Action("Detail", "Products", new {id = cim.Product.SanPhamID})">@cim.Product.TenSanPham</a></h4>
-
-                            </td>
-                            <td class="cart_price">
-                                <p>@string.Format("{0:N0}", cim.Product.Gia) đ</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <input class="quantity" id="txtQ_@cim.Item.ProID" type="text" placeholder="Slg" value="@cim.Item.Quantity" name="Quantity">
-                            </td>
-
-                            <td class="cart_total" width="250">
-                                <p class="cart_total_price">@string.Format("{0:N0}", cim.Product.Gia * cim.Item.Quantity) đ</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="btn cart_quantity_update updateItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button">
-                                    <i class="fa fa-refresh"> Cập nhật</i>
-
-                                </a>
-                                <a class="btn cart_quantity_delete removeItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button">
-                                    <i class="fa fa-remove">Xóa</i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-        </div>
-        <h3 style="float:right; color:orangered"> Tổng Tiền: @string.Format("{0:N0}", @ViewBag.Total) đ</h3>
-        <form style="text-align:right; padding-bottom:50px" method="post" id="frmCheckout" action="@Url.Action("Checkout","Cart")">
-            <div class="row">
-                <div class="col-md-12">
-                    <a class="btn btn-success" href="@Url.Action("Index","Home")" role="button">
-                        <i class="fa fa-mail-reply"></i>Tiếp tục mua hàng
-                    </a>
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa fa-check"></i> Thanh toán
-                    </button>
-                </div>
-
             </div>
-        </form>
+        </section>
+    }
+
+    else
+    {
+                <form method="post" id="frmRemoveItem" action="@Url.Action("RemoveItem","Cart")">
+                    <input id="txtRemoveId" type="hidden" name="proId" />
+
+                </form>
+                <form method="post" id="frmUpdateItem" action="@Url.Action("UpdateItem","Cart")">
+                    <input id="txtUpdateId" type="hidden" name="proId" />
+                    <input id="txtUpdateQ" type="hidden" name="quantity" />
+                </form>
+                <section id="cart_items">
+                    <form style="text-align:left; padding-bottom:50px" method="post" id="frmCheckout" action="@Url.Action("Checkout","Cart")">
+
+                        <div class="step-one">
+                            <h2 class="heading">Bước 1: Kiểm tra thông tin khách hàng </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="shopper-info">
+                                    <p>Số điện thoại</p>
+                                    
+                                        <input type="text" name="SoDienThoai" class="form-control input-sm" placeholder="" value="@CurrentContext.getCurrenUser().SoDienThoai">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-5 clearfix">
+                                <div class="shopper-info">
+                                    <p>Địa chỉ giao hàng</p>
+                                    
+                                        <input type="text" name="DiaChi" class="form-control input-sm" placeholder="" value="@CurrentContext.getCurrenUser().DiaChi">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one">
+                            <h2 class="heading">Bước 2: Chọn hình thức thanh toán</h2>
+                        </div>
+                        <div class="checkout-options">
+                            <ul class="nav">
+                                <li>
+                                    <label><input name="bank" type="radio"> Thanh toán qua ngân hàng</label>
+                                </li>
+                                <li>
+                                    <label><input name="bank" type="radio"> Thanh toán trực tiếp</label>
+                                </li>
+
+                            </ul>
+                        </div><!--/checkout-options-->
+                        <div class="step-one">
+                            <h2 class="heading">Bước 3: Kiểm tra giỏ hàng</h2>
+                        </div>
+                        <div class="table cart_info">
+                            <table class="table table-condensed" style="text-align:center">
+                                <thead>
+                                    <tr class="cart_menu">
+                                        <td class="image">Sản phẩm</td>
+                                        <td class="description">Tên sản phẩm</td>
+                                        <td class="price">Giá</td>
+                                        <td class="quantity">Số lượng</td>
+                                        <td class="total">Thành tiền</td>
+                                        <td>Chức năng</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var cim in Model)
+                                    {
+                                        <tr>
+                                            <td class="cart_product">
+
+                                                <img src="~/image/@cim.Product.SanPhamID/main_thumn.jpg" height="59" />
+                                            </td>
+                                            <td class="cart_description">
+                                                <h4><a href="@Url.Action("Detail", "Products", new {id = cim.Product.SanPhamID})">@cim.Product.TenSanPham</a></h4>
+
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>@string.Format("{0:N0}", cim.Product.Gia) đ</p>
+                                            </td>
+                                            <td class="cart_quantity">
+                                                <input class="quantity" id="txtQ_@cim.Item.ProID" type="text" placeholder="Slg" value="@cim.Item.Quantity" name="Quantity">
+                                            </td>
+
+                                            <td class="cart_total" width="250">
+                                                <p class="cart_total_price">@string.Format("{0:N0}", cim.Product.Gia * cim.Item.Quantity) đ</p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a class="btn cart_quantity_update updateItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button">
+                                                    <i class="fa fa-refresh"> Cập nhật</i>
+
+                                                </a>
+                                                <a class="btn cart_quantity_delete removeItem" href="javascript:;" data-proid="@cim.Item.ProID" role="button">
+                                                    <i class="fa fa-remove">Xóa</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <h3 style="float:right; color:orangered"> Tổng Tiền: @string.Format("{0:N0}", @ViewBag.Total) đ</h3>
+                        <div class="row" style="text-align:right">
+                            <div class="col-md-12">
+                                <a class="btn btn-success" href="@Url.Action("Index","Home")" role="button">
+                                    <i class="fa fa-mail-reply"></i>Tiếp tục mua hàng
+                                </a>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-check"></i> Thanh toán
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
 
 
-    </section> <!--/#cart_items-->
+                </section> <!--/#cart_items-->
+     
+    }
 
-}
+</div>
+
 
 @section js{
 
