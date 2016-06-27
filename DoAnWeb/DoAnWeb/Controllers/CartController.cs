@@ -112,7 +112,9 @@ namespace DoAnWeb.Controllers
                             DonGia = (decimal)pro.Gia,
                             ThanhTien = (decimal)(item.Quantity * pro.Gia)
                         };
-
+                        pro.SoLanMua += item.Quantity;
+                        pro.SoLuong -= item.Quantity;
+                        ctx.SaveChanges();
                         ord.tbl_ChiTietOrders.Add(d);
                         totalAmount += d.SoLuong;
                         total += d.ThanhTien;

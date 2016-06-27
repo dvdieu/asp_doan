@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DoAnWeb.Areas.Admin.Models;
 using DoAnWeb.Models;
 using System.IO;
-using DoAnWeb.ClassHelper;
+using DoAnWeb.Areas.Admin.Filter;
+using System;
 
 namespace DoAnWeb.Areas.Admin.Controllers
 {
+    [CheckLoginAdmin]
     public class ProductsController : Controller
     {
         // GET: Admin/Products
@@ -35,6 +35,7 @@ namespace DoAnWeb.Areas.Admin.Controllers
             model.DaXoa = false;
             model.SoLanXem = 0;
             model.SoLanMua = 0;
+            model.NgayNhap = DateTime.Now;
             using (ModelEntities ctx = new ModelEntities())
             {
                 ctx.tbl_SanPhams.Add(model);

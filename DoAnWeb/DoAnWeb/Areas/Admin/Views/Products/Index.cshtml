@@ -53,17 +53,11 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <a href="@Url.Action("Edit",new { id = item.SanPhamID })" class="btn btn-primary" role="button">
                                     <i class="fa fa-edit"></i>
                                     Sửa
                                 </a>
-                            </div>
-                            <div class="col-sm-6">
-                                <button class="btn btn-warning btnDelete" data-SanPhamID="@item.SanPhamID">
-                                    <i class="fa fa-trash-o"></i>
-                                    Xoá
-                                </button>
                             </div>
                         </div>
                     </td>
@@ -91,25 +85,25 @@
             $('#txtDelete').val(id);
             $('#frmDelete').submit();
         }
-        $('.btnDelete').click(function () {
-            var item = this;
-            swal({
-                title: 'Bạn đang thực hiện thao tác nguy hiểm',
-                text: "Bạn thực sự muốn xóa sản phẩm này",
-                type: 'warning',
-                cancelButtonText: 'Hủy bỏ',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Xác nhận'
-            }).then(function () {
-                swal(
-                  'Đã xóa!',
-                  'Sản phẩm này đã bị xóa.',
-                  'success'
-                ), submitformDelete(item);
-            })
-        });
+        //$('.btnDelete').click(function () {
+        //    var item = this;
+        //    swal({
+        //        title: 'Bạn đang thực hiện thao tác nguy hiểm',
+        //        text: "Bạn thực sự muốn xóa sản phẩm này",
+        //        type: 'warning',
+        //        cancelButtonText: 'Hủy bỏ',
+        //        showCancelButton: true,
+        //        confirmButtonColor: '#3085d6',
+        //        cancelButtonColor: '#d33',
+        //        confirmButtonText: 'Xác nhận'
+        //    }).then(function () {
+        //        swal(
+        //          'Đã xóa!',
+        //          'Sản phẩm này đã bị xóa.',
+        //          'success'
+        //        ), submitformDelete(item);
+        //    })
+        //});
 
     </script>
 }

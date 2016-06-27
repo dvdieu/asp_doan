@@ -441,8 +441,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CartController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FactoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Filter\CheckLoginAdminAttribute.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_Add_Category.cs" />
+    <Compile Include="Areas\Admin\Models\Poco_Add_Factory.cs" />
     <Compile Include="Areas\Admin\Models\Poco_ChiTiet_Order.cs" />
     <Compile Include="Areas\Admin\Models\Poco_DonHang_ChiTiet.cs" />
     <Compile Include="Areas\Admin\Models\Poco_DonHang_IndexPage.cs" />
@@ -569,7 +574,12 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Products\ByFactory.cshtml" />
     <Content Include="Views\Factory\NhaSanXuatPartial.cshtml" />
-    <Content Include="Views\Products\SearchProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

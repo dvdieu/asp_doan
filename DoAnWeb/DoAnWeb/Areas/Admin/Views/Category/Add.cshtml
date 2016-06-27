@@ -1,0 +1,86 @@
+﻿@section title
+{
+    Thêm loại sản phẩm
+}
+@section css
+{
+    <link href="~/Assets/bootstrap-select-1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/datatables/media/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+}
+@using DoAnWeb.Areas.Admin.Models
+@model Poco_Add_Category
+<div class="panel panel-info">
+    <div class="panel-heading">Thêm Loại Sản Phẩm</div>
+    <div class="panel-body">
+
+            <form class="form-horizontal" method="post" action="" id="frmAdd">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Tên loại</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="TenLoaiSanPham">
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary" id="btnSave">
+                            <i class="fa fa-plus-circle"></i>
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        Kích hoạt
+                    </label>
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            @Html.CheckBox("DaXoa", true)
+                        </label>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Areas/Admin/Assets/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Assets/jQueryValidate/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        //$('#btnSave').click(function () {
+            
+        //});
+        $('#frmAdd').validate({
+            rules: {
+                TenLoaiSanPham: {
+                    required: true,
+                }
+            },
+                messages: {
+                    TenLoaiSanPham: {
+                        required: "Chưa nhập tên",
+                    },
+                },
+                success: "valid",
+                submitHandler: function (form) {
+                    swal({
+                        title: 'Xác Nhận Thêm Loại Sản Phẩm',
+                        text: "Bạn muốn Thêm Loại Sản Phẩm ???",
+                        type: 'warning',
+                        cancelButtonText: 'Hủy bỏ',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Xác nhận'
+                    }).then(function () {
+                        swal(
+                          'Hoàn tất!',
+                          'Thêm thành công',
+                          'success'
+                        ),
+                        form.submit();
+                    });
+                }
+        });
+    </script>
+}
