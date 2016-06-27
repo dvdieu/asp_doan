@@ -15,7 +15,7 @@ namespace DoAnWeb.Areas.Admin.Controllers
             List<Poco_DonHang_IndexPage> danhSachDonHang = new List<Poco_DonHang_IndexPage>();
             using (ModelEntities ctx = new ModelEntities())
             {
-                List<tbl_PhieuOrders> list = ctx.tbl_PhieuOrders.ToList();
+                List<tbl_PhieuOrders> list = ctx.tbl_PhieuOrders.Where(p=>p.DaXoa==false).OrderByDescending(m=>m.TinhTrangGiaoHang.Value).ToList();
                 List<tbl_NguoiSuDungs> listUser = ctx.tbl_NguoiSuDungs.ToList();
                 foreach(tbl_PhieuOrders item in list)
                 {
@@ -45,11 +45,16 @@ namespace DoAnWeb.Areas.Admin.Controllers
             }
                 
         }
-        // GET: Admin/Cart/UpdateThanhToan
-        public ActionResult SetThanhToan(int ?id)
+        // POST: Admin/Cart/UpdateThanhToan
+        [HttpPost]
+        public ActionResult SetThanhToan(int ?id,bool edit=false)
         {
-            if(!id.HasValue)
+            if (!id.HasValue)
             {
+                if (edit == true)
+                {
+                    return RedirectToAction("Edit", new { id = id });
+                }
                 return RedirectToAction("Index");
             }
             else
@@ -59,12 +64,44 @@ namespace DoAnWeb.Areas.Admin.Controllers
                     tbl_PhieuOrders itemFind = ctx.tbl_PhieuOrders.Where(p => p.PhieuOrderID == id.Value).FirstOrDefault();
                     itemFind.TinhTrangThanhToan = true;
                     ctx.SaveChanges();
+                    if (edit == true)
+                    {
+                        return RedirectToAction("Edit", new { id = id });
+                    }
+                    return RedirectToAction("Index");
                 }
             }
-            return RedirectToAction("Index");
         }
-        // GET: Admin/Cart/UpdateGiaoHang
-        public ActionResult SetGiaoHang(int? id)
+        // POST: Admin/Cart/SetGiaoHang
+        [HttpPost]
+        public ActionResult SetGiaoHang(int? id, bool edit=false)
+        {
+            if (!id.HasValue)
+            {
+                if(edit==true)
+                {
+                    return RedirectToAction("Edit",new { id = id });
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                using (ModelEntities ctx = new ModelEntities())
+                {
+                    tbl_PhieuOrders itemFind = ctx.tbl_PhieuOrders.Where(p => p.PhieuOrderID == id.Value).FirstOrDefault();
+                    itemFind.TinhTrangGiaoHang = true;
+                    ctx.SaveChanges();
+                    if (edit == true)
+                    {
+                        return RedirectToAction("Edit", new { id = id });
+                    }
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+        // POST: Admin/Cart/SetDelete
+        [HttpPost]
+        public ActionResult SetDelete(int? id)
         {
             if (!id.HasValue)
             {
@@ -75,11 +112,12 @@ namespace DoAnWeb.Areas.Admin.Controllers
                 using (ModelEntities ctx = new ModelEntities())
                 {
                     tbl_PhieuOrders itemFind = ctx.tbl_PhieuOrders.Where(p => p.PhieuOrderID == id.Value).FirstOrDefault();
-                    itemFind.TinhTrangGiaoHang = true;
+                    itemFind.DaXoa = true;
                     ctx.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
-            return RedirectToAction("Index");
+            
         }
         // GET: Admin/Cart/Edit
         public ActionResult Edit(int? id)
@@ -92,23 +130,35 @@ namespace DoAnWeb.Areas.Admin.Controllers
             using (ModelEntities ctx = new ModelEntities())
             {
                 tbl_PhieuOrders phieuOder = ctx.tbl_PhieuOrders.Where(p=>p.PhieuOrderID==id).ToList().FirstOrDefault();
+                if(phieuOder.DaXoa==true)
+                {
+                    return RedirectToAction("Index");
+                }
                 chiTietDonHang.ThongTinDonHang = new Poco_Info_DonHang();
                 chiTietDonHang.ThongTinDonHang.MaDonHang = phieuOder.PhieuOrderID.ToString();
                 chiTietDonHang.ThongTinDonHang.NgayLapPhieu = phieuOder.NgayLapPhieu.ToString();
-                
                 if(string.IsNullOrEmpty(phieuOder.SoDienThoai))
                 {
                     chiTietDonHang.ThongTinDonHang.SoDienThoaiNhanHang = "Không xác định";
+                }
+                else
+                {
+                    chiTietDonHang.ThongTinDonHang.SoDienThoaiNhanHang = phieuOder.SoDienThoai;
                 }
                 if (string.IsNullOrEmpty(phieuOder.DiaChi))
                 {
                     chiTietDonHang.ThongTinDonHang.DiaChiGiaoHang = "Không xác định";
                 }
+                else
+                {
+                    chiTietDonHang.ThongTinDonHang.DiaChiGiaoHang = phieuOder.DiaChi;
+                }
                 chiTietDonHang.ThongTinDonHang.TinhTrangGiaoHang = phieuOder.TinhTrangGiaoHang.Value;
-                chiTietDonHang.ThongTinDonHang.TinhTrangThanhToan = phieuOder.TinhTrangGiaoHang.Value;
+                chiTietDonHang.ThongTinDonHang.TinhTrangThanhToan = phieuOder.TinhTrangThanhToan.Value;
                 chiTietDonHang.ThongTinDonHang.TongSoLuong = phieuOder.TongSoLuong.ToString();
                 chiTietDonHang.ThongTinDonHang.TongTien = phieuOder.TongTien;
                 chiTietDonHang.ThongTinDonHang.GioLap = phieuOder.NgayLapPhieu.ToShortTimeString();
+                chiTietDonHang.ThongTinDonHang.DaXoa = phieuOder.DaXoa.Value;
 
                 tbl_NguoiSuDungs user = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == phieuOder.NguoiSuDungID).FirstOrDefault();
 
@@ -134,7 +184,6 @@ namespace DoAnWeb.Areas.Admin.Controllers
                 }
                 return View(chiTietDonHang);
             }
-
         }
     }
 }

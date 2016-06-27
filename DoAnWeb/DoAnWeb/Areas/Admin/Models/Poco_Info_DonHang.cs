@@ -16,5 +16,6 @@ namespace DoAnWeb.Areas.Admin.Models
         public bool TinhTrangGiaoHang { get; set; }
         public string DiaChiGiaoHang { get; set; }
         public string SoDienThoaiNhanHang { get; set; }
+        public bool DaXoa { get; set; }
     }
 }
