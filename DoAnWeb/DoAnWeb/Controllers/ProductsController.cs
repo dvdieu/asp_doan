@@ -105,6 +105,12 @@ namespace DoAnWeb.Controllers
             }
             using (ModelEntities ctx = new ModelEntities())
             {
+                tbl_SanPhams item = ctx.tbl_SanPhams.Where(p => p.SanPhamID == id.Value).FirstOrDefault();
+                if(item !=null)
+                {
+                    item.SoLanXem++;
+                    ctx.SaveChanges();
+                }
                 return View(ctx.tbl_SanPhams.Where(p => p.SanPhamID == id).FirstOrDefault());
             }
         }

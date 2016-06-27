@@ -19,15 +19,12 @@ namespace DoAnWeb.Controllers
 
             using (ModelEntities ctx = new ModelEntities())
             {
-                item.DanhSachSanPhamBanChayNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.SoLanMua).Take(11).ToList();
-                item.DanhSachSanPhamMoiNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.NgayNhap).Take(11).ToList();
-                item.DanhSachSanPhamXemNhieuNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.SoLanXem).Take(11).ToList();
+                item.DanhSachSanPhamBanChayNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.SoLanMua).Take(12).ToList();
+                item.DanhSachSanPhamMoiNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.NgayNhap).Take(12).ToList();
+                item.DanhSachSanPhamXemNhieuNhat = ctx.tbl_SanPhams.OrderByDescending(p => p.SoLanXem).Take(12).ToList();
             }
 
             return View(item);
-            //item la kieu Poco_index_page po
-        //poco là trang admin mà
-        //Poco la đang code trang HomeController
         }
     }
 }
