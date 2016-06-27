@@ -15,7 +15,7 @@ namespace DoAnWeb.Controllers
         {
             using (ModelEntities context = new ModelEntities())
             {
-                return PartialView(context.tbl_NhaSanXuats.ToList());
+                return PartialView(context.tbl_NhaSanXuats.Where(p=>p.DaXoa==false).ToList());
             }
         }
     }
