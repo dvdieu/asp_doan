@@ -1,0 +1,169 @@
+﻿@using DoAnWeb.Models.Helper
+@using DoAnWeb.Models
+@using DoAnWeb.ClassHelper
+
+@model Poco_Product_Page
+@section view_title{
+   "Kết quả tìm kiếm"
+}
+
+
+
+
+@section section_css
+{
+    <style type="text/css">
+        .thumbnail {
+            max-height: 500px;
+            min-height: 500px;
+        }
+
+        .caption-lg-orange {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #fc6e04;
+        }
+
+        .caption-lg-red {
+            font-weight: bold;
+            font-size: 11pt;
+            color: #f00;
+        }
+
+        .caption-md-blue {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #0092ff;
+        }
+    </style>
+}
+
+@section js{
+    <script type="text/javascript">
+     $('.add-to-cart').on('click', function () {
+         var proId = $(this).data('proid');
+         $('#txtProID').val(proId);
+         $('#frmAddToCart').submit();
+     });
+
+    </script>
+}
+
+@if (Model.DanhSachSanPham.Count > 0)
+{
+    <form id="frmAddToCart" method="post" action="@Url.Action("AddInByCatView","Cart")">
+        <input type="hidden" name="ProID" id="txtProID" />
+        <input type="hidden" name="Quantity" value="1" />
+        <input type="hidden" name="catId" value="@ViewBag.CatID" />
+        <input type="hidden" name="curpage" value="@ViewBag.CurPage" />
+    </form>
+    foreach (tbl_SanPhams item in Model.DanhSachSanPham)
+    {
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail">
+                <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: auto; height: 220px;" />
+                <br />
+                <div class="caption">
+                    <span class="caption-lg-orange">@item.TenSanPham</span>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span><i class="fa fa-eye"></i><span style="opacity:0.8;color:darkgray"> @item.SoLanXem view</span></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span><i class="fa fa-shopping-cart" style="color:teal"></i><span style="opacity:0.8;color:darkgray"> @item.SoLanMua buy</span></span>
+                        </div>
+                    </div>
+                    <br />
+                    <span class="caption-lg-red">@string.Format("{0:N0}", @item.Gia)</span>
+                    <br />
+                    Số lượng
+                    <span class="caption-md-blue">@item.SoLuong</span>
+                    <br />
+                    <span style="display:inline-block; height:60px; overflow:hidden">@item.MoTaNgan</span>
+                    <br />
+                    <br />
+
+
+                    <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
+                                   class="btn btn-primary"
+                                   role="button">
+                                    <i class="fa fa-list"></i>Chi tiết
+                                </a>
+                            </div>
+                            @if (CurrentContext.isLogin())
+                            {
+                                <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                <input id="Quantity" type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                <div class="col-md-9">
+                                    <a href="javascript:;" class="btn btn-success add-to-cart" data-proid="@item.SanPhamID" role="button">
+                                        <i class="fa fa-cart-plus"></i>
+                                        Thêm vào giỏ
+                                    </a>
+
+                                </div>
+                            }
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row>">
+        <nav class="col-md-12 col-sm-12">
+            <div class="text-center">
+                <ul class="pagination">
+                    @if (Model.CurPage == 1)
+                    {
+                        <li class="disabled hidden">
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("SearchProduct","Products",new {name=ViewBag.SearchKey,page=Model.CurPage-1})" aria-label="Next">
+                                <i class="fa fa-chevron-circle-left"></i>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = 1; i <= Model.SoPage; i++)
+                    {
+                        if (Model.CurPage == i)
+                        {
+                            <li class="active">
+                                <a href="@Url.Action("SearchProduct","Products",new { name = ViewBag.SearchKey, page = i })">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("SearchProduct","Products",new { name = ViewBag.SearchKey, page = i })">@i</a>
+                            </li>
+                        }
+                    }
+                    @if (Model.CurPage == Model.SoPage)
+                    {
+                        <li class="disabled hidden">
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("SearchProduct","Products",new {name=ViewBag.SearchKey,page=Model.CurPage+1})" aria-label="Next">
+                                <i class="fa fa-chevron-circle-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+}
+

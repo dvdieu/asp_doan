@@ -466,6 +466,7 @@
     <Compile Include="Models\Helper\Cart.cs" />
     <Compile Include="Models\Helper\CartModel.cs" />
     <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Detail.cs" />
     <Compile Include="Models\Helper\Poco_Index_Page.cs" />
     <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />
@@ -568,6 +569,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Products\ByFactory.cshtml" />
     <Content Include="Views\Factory\NhaSanXuatPartial.cshtml" />
+    <Content Include="Views\Products\SearchProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
