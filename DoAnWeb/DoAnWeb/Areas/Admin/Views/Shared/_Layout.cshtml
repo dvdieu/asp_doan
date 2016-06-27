@@ -236,21 +236,24 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
-                    
-                    <ul class="dropdown-menu dropdown-user">
-                        <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @Html.ActionLink("Back", "Logout", "Account", new { }, null)
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                    <form id="frmLogout" method="post" action="@Url.Action("Logout", "Account", new { area = "" }, null)">
+
+                    </form>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            
+                            <li>
+                                <a href="javascript: ;" class="logOutLink"><i class="fa fa-sign-out"></i>Thoát</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+</li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -359,7 +362,11 @@
     <script src="~/Areas/Admin/Assets/metisMenu/dist/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/Areas/Admin/Assets/js/sb-admin-2.js"></script>
-
+    <script type="text/javascript">
+        $('.logOutLink').click(function () {
+            $('#frmLogout').submit();
+        });
+    </script>
     @RenderSection("js", false)
 </body>
 </html>
