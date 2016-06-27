@@ -574,6 +574,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Account\" />
     <Folder Include="Views\AccountEdit\" />
   </ItemGroup>
   <ItemGroup>

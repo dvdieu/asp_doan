@@ -92,7 +92,8 @@ namespace DoAnWeb.Controllers
                 DiaChi = null,
                 SoDienThoai = null,
                 TinhTrangGiaoHang = false,
-                TinhTrangThanhToan = false
+                TinhTrangThanhToan = false,
+                DaXoa = false
             };
 
             using (ModelEntities ctx = new ModelEntities())
