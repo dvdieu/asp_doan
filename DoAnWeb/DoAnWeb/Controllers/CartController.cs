@@ -81,7 +81,7 @@ namespace DoAnWeb.Controllers
 
         //POST: /Cart/Checkout
         [HttpPost]
-        public ActionResult Checkout()
+        public ActionResult Checkout(tbl_NguoiSuDungs itemUser)
         {
             tbl_PhieuOrders ord = new tbl_PhieuOrders
             {
@@ -123,8 +123,15 @@ namespace DoAnWeb.Controllers
                 ord.TinhTrangThanhToan = false;
                 int curID = CurrentContext.getCurrenUser().NguoiSuDungID;
                 var user = ctx.tbl_NguoiSuDungs.Where(p => p.NguoiSuDungID == curID).FirstOrDefault();
-                ord.DiaChi = user.DiaChi;
-                ord.SoDienThoai = user.SoDienThoai;
+                if (itemUser.DiaChi == null)
+                    ord.DiaChi = user.DiaChi;
+                else
+                    ord.DiaChi = itemUser.DiaChi;
+                if (itemUser.SoDienThoai == null)
+                    ord.SoDienThoai = user.SoDienThoai;
+                else
+                    ord.SoDienThoai = itemUser.SoDienThoai;
+
                 ctx.tbl_PhieuOrders.Add(ord);
                 ctx.SaveChanges();
                 CurrentContext.Cart().Items.Clear();
