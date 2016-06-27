@@ -151,7 +151,13 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
+
+                            @using (@Html.BeginForm("SearchProduct", "Products", FormMethod.Get))
+                            {
+                                <p>
+                                    @Html.TextBox("name", null, new { @class = "form-control" })
+                                </p>
+                            }
                         </div>
                     </div>
                 </div>

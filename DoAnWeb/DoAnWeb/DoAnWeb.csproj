@@ -471,6 +471,7 @@
     <Compile Include="Models\Helper\Cart.cs" />
     <Compile Include="Models\Helper\CartModel.cs" />
     <Compile Include="Models\Helper\Poco_DangKy.cs" />
+    <Compile Include="Models\Helper\Poco_Detail.cs" />
     <Compile Include="Models\Helper\Poco_Index_Page.cs" />
     <Compile Include="Models\Helper\Poco_Login.cs" />
     <Compile Include="Models\Helper\Poco_Product_Page.cs" />

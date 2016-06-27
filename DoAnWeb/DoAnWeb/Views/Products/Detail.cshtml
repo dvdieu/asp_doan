@@ -1,7 +1,7 @@
 ﻿@{Layout = "~/Views/Shared/_LayoutDetail.cshtml";}
-@using DoAnWeb.Models
+@using DoAnWeb.Models.Helper
 @using DoAnWeb.ClassHelper
-@model tbl_SanPhams
+@model  Poco_Detail
 @section view_title
 {
     Chi tiết sản phẩm
@@ -23,31 +23,47 @@
 }
         <div class="product-details">
             <div class="col-md-4">
-                <img src="~/image/@Model.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
+                <img src="~/image/@Model.ThongTinSanPham.SanPhamID/main_thumn.jpg" style="width:auto;height:300px;" />
             </div>
             <div class="col-md-8">
                 <span class="name">
-                    @Model.TenSanPham
+                    @Model.ThongTinSanPham.TenSanPham
                 </span>
                 <br />
                 <span>
-                    <span class="gia">@string.Format("{0:N0}", Model.Gia) VND</span>
+                    <span class="n"><b>Nhà sản xuất:</b> @Model.TenNhaSanXuat</span>
                 </span>
                 <br />
                 <span>
-                    Hơn @Model.SoLanMua lượt mua
+                    <span class="n"><b>Loại sản phẩm:</b> @Model.TenLoaiSanPham</span>
                 </span>
                 <br />
                 <span>
-                    @Html.Raw(HttpUtility.HtmlDecode(Model.MoTaDai))
+                    <b>Số lượt xem:</b> @Model.ThongTinSanPham.SoLanMua
                 </span>
                 <br />
                 <span>
-                    Dung tích @Model.DungTich ml
+                    <b>Số lượt mua:</b> @Model.ThongTinSanPham.SoLanXem
                 </span>
                 <br />
                 <span>
-                    Nồng độ @Model.NongDo
+                    <b> Số lượng:</b> @Model.ThongTinSanPham.SoLuong
+                </span>
+                <br />
+                <span>
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.ThongTinSanPham.MoTaDai))
+                </span>
+                <br />
+                <span>
+                    <b>Dung tích: </b>@Model.ThongTinSanPham.DungTich ml
+                </span>
+                <br />
+                <span>
+                    <b>Nồng độ:</b> @Model.ThongTinSanPham.NongDo
+                </span>
+                <br />
+                <span>
+                    <span class="gia"><b>Giá:</b> @string.Format("{0:N0}", @Model.ThongTinSanPham.Gia) VND</span>
                 </span>
                 <br />
                 <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
@@ -55,7 +71,7 @@
                         @if (CurrentContext.isLogin())
                         {
                         <div class="col-md-3">
-                            <input type="hidden" value="@Model.SanPhamID" name="ProID">
+                            <input type="hidden" value="@Model.ThongTinSanPham.SanPhamID" name="ProID">
                             <input id="Quantity" type="text" class="form-control" placeholder="Slg" value="1" name="Quantity">
                         </div>
                         
@@ -77,7 +93,7 @@
             <h2 class="title text-center">Sản phẩm cùng loại</h2>
             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    @{Html.RenderAction("PartialViewCungLoai", "Products", new { id = Model.LoaiSanPhamID,spID=Model.SanPhamID });}
+                    @{Html.RenderAction("PartialViewCungLoai", "Products", new { id = Model.ThongTinSanPham.LoaiSanPhamID,spID=Model.ThongTinSanPham.SanPhamID });}
                 </div>
                 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                     <i class="fa fa-angle-left"></i>
