@@ -1,12 +1,12 @@
-﻿using DoAnWeb.Models;
-using System;
+﻿using DoAnWeb.Areas.Admin.Filter;
+using DoAnWeb.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DoAnWeb.Areas.Admin.Controllers
 {
+    [CheckLoginAdmin]
     public class FactoryController : Controller
     {
         // GET: Admin/Factory

@@ -445,6 +445,7 @@
     <Compile Include="Areas\Admin\Controllers\FactoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Filter\CheckLoginAdminAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Add_Category.cs" />
     <Compile Include="Areas\Admin\Models\Poco_Add_Factory.cs" />
     <Compile Include="Areas\Admin\Models\Poco_ChiTiet_Order.cs" />
