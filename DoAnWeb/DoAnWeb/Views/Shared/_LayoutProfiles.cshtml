@@ -67,7 +67,7 @@
                                 else
                                 {
                                     <li><a href="@Url.Action("Index","Account")"><i class="fa fa-user"></i>@CurrentContext.getCurrenUser().TenNguoiSuDung</a></li>
-                                    if (CurrentContext.getCurrenUser().Quyen == 1)
+                                    if (CurrentContext.getCurrenUser().Quyen == 0)
                                     {
                                         <li><a href="@Url.Action("Index", "Admin")"><i class="fa fa-crosshairs"></i>Quản lý</a></li>
                                     }
