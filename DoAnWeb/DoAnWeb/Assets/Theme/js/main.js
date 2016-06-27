@@ -28,3 +28,11 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(document).ready(function () {
+    $('#menu').on('click', '.active', function (e) {
+        e.preventDefault();
+        $(this).parents('#nav').find('.active').removeClass('active').end().end().addClass('active2');
+        $(activeTab).show();
+    });
+});

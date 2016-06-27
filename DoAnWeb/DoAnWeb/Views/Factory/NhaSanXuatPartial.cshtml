@@ -1,0 +1,28 @@
+﻿@using DoAnWeb.Models
+
+@model List<tbl_NhaSanXuats>
+@section section_css
+{
+}
+<nav>
+    <div id="menu" class="menu">
+        <div class="menu-header">
+            <i class="fa fa-tags"></i>
+            NHÀ SẢN XUẤT
+        </div>
+        <ul>
+            @foreach (tbl_NhaSanXuats item in Model)
+            {
+                <li class="active">
+
+                    <a href="@Url.Action("ByFactory", "Products", new { id = item.NhaSanXuatID})">
+                        <img src="~/Assets/LeftMenu/italian-wine-bottle.svg" width="48" /> @item.TenNhaSanXuat
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+
+
+

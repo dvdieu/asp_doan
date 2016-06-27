@@ -33,6 +33,8 @@ namespace DoAnWeb.Areas.Admin.Controllers
             if (string.IsNullOrEmpty(model.MoTaDai)) model.MoTaDai = string.Empty;
             if (string.IsNullOrEmpty(model.MoTaNgan)) model.MoTaNgan = string.Empty;
             model.DaXoa = false;
+            model.SoLanXem = 0;
+            model.SoLanMua = 0;
             using (ModelEntities ctx = new ModelEntities())
             {
                 ctx.tbl_SanPhams.Add(model);

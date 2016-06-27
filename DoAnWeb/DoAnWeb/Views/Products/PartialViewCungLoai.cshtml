@@ -2,54 +2,100 @@
 @using DoAnWeb.ClassHelper
 @model List<tbl_SanPhams>
 
-@{int totalItem = Model.Count;}
-@{int i = 1; }
-@Html.Raw("<div class='item active'>")
-@foreach (tbl_SanPhams item in Model)
+@if (Model.Count <= 3)
 {
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
-                    <h2>@string.Format("{0:N0}", @item.Gia)</h2>
-                    <p>@item.TenSanPham</p>
-                    <form id="cartAdd-form" method="post" action="@Url.Action("Add","Cart")">
-                        <div class="row" style="text-align:center">
-                            <div class="col-md-3">
-                                <a href="@Url.Action("Detail", "Products", new {id = item.SanPhamID})"
-                                   class="btn btn-primary"
-                                   role="button">
-                                    <i class="fa fa-list"></i>Chi tiết
-                                </a>
-                            </div>
-                            @if (CurrentContext.isLogin())
-                            {
-                                <input type="hidden" value="@item.SanPhamID" name="ProID">
-                                <input  type="hidden" class="form-control"  placeholder="Slg" value="1" name="Quantity">
-
-                                <div class="col-md-9">
-                                    <button id="btnCartPlus" class="btn btn-success" type="submit">
-                                        <i class="fa fa-cart-plus"></i>
-                                        Thêm vào giỏ
-                                    </button>
-
+    @Html.Raw("<div class='item'>")
+    foreach (tbl_SanPhams item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
+                        <h2>@string.Format("{0:N0}", @item.Gia)</h2>
+                        <p>@item.TenSanPham</p>
+                        <form id="cartAdd-form" method="post" action="@Url.Action("Add", "Cart")">
+                            <div class="row" style="text-align:center">
+                                <div class="col-md-3">
+                                    <a href="@Url.Action("Detail", "Products", new { id = item.SanPhamID })"
+                                       class="btn btn-primary"
+                                       role="button">
+                                        <i class="fa fa-list"></i>Chi tiết
+                                    </a>
                                 </div>
-                            }
-                        </div>
-                    </form>
+                                @if (CurrentContext.isLogin())
+                                {
+                                    <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                    <input type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                    <div class="col-md-9">
+                                        <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                            <i class="fa fa-cart-plus"></i>
+                                            Thêm vào giỏ
+                                        </button>
+
+                                    </div>
+                                }
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    if(i%3==0)
-    {
-        @Html.Raw("</div>")
-        @Html.Raw("<div class='item'>")
     }
-        if(i==totalItem)
-        {
-            @Html.Raw("</div>")
-        }
-    i++;
+    @Html.Raw("</div>")
 }
+else
+{
+    int totalItem = Model.Count;
+    int i = 1;
+            @Html.Raw("<div class='item active'>")
+            foreach (tbl_SanPhams item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/image/@item.SanPhamID/main_thumn.jpg" alt="Hình: @item.TenSanPham" style="width: 162px; height: 220px;" />
+                                <h2>@string.Format("{0:N0}", @item.Gia)</h2>
+                                <p>@item.TenSanPham</p>
+                                <form id="cartAdd-form" method="post" action="@Url.Action("Add", "Cart")">
+                                    <div class="row" style="text-align:center">
+                                        <div class="col-md-3">
+                                            <a href="@Url.Action("Detail", "Products", new { id = item.SanPhamID })"
+                                               class="btn btn-primary"
+                                               role="button">
+                                                <i class="fa fa-list"></i>Chi tiết
+                                            </a>
+                                        </div>
+                                        @if (CurrentContext.isLogin())
+                                        {
+                                            <input type="hidden" value="@item.SanPhamID" name="ProID">
+                                            <input type="hidden" class="form-control" placeholder="Slg" value="1" name="Quantity">
+
+                                            <div class="col-md-9">
+                                                <button id="btnCartPlus" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                    Thêm vào giỏ
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                if (i % 3 == 0)
+                {
+                    @Html.Raw("</div>")
+                    @Html.Raw("<div class='item'>")
+                }
+                if (i == totalItem)
+                {
+                    @Html.Raw("</div>")
+                }
+                i++;
+            }
+            }
